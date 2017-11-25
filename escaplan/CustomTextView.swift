@@ -57,6 +57,7 @@ class PlaceHolderTextView: UITextView {
         }   //  if
     }   //  textChange
 
+    /*
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let next = next {
             next.touchesBegan(touches , with: event)
@@ -84,5 +85,5 @@ class PlaceHolderTextView: UITextView {
         } else {
             super.touchesMoved(touches, with: event)
         }
-    }
+    }*/
 }

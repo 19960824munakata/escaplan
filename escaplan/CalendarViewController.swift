@@ -11,7 +11,7 @@ import FSCalendar
 import CalculateCalendarLogic
 import RealmSwift
 
-class CalendarViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance,UIGestureRecognizerDelegate,UITextViewDelegate{
+class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
 
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var calendarHeight: NSLayoutConstraint!
@@ -49,6 +49,9 @@ class CalendarViewController: UIViewController,FSCalendarDelegate,FSCalendarData
             //placeholdarラベルを可視化
             textView.placeHolderLabel.alpha = 1
         }
+        
+        //完了ボタン、キャンセルボタンのview追加
+        addToolBar(textView: textView,calendar: calendar)
         
         // Do any additional setup after loading the view.
     }
@@ -133,10 +136,7 @@ class CalendarViewController: UIViewController,FSCalendarDelegate,FSCalendarData
             textView.text = nil
             //placeholdarラベルを可視化
             textView.placeHolderLabel.alpha = 1
-        }
-        //calendarをweekModeに
-//        self.calendar.setScope(.week, animated: true)
-        
+        }        
         
     }
     
@@ -184,17 +184,47 @@ class CalendarViewController: UIViewController,FSCalendarDelegate,FSCalendarData
             if tag != 123 {
                 //キーボードをしまう
                 if(textView.isFirstResponder){
-                    textView.resignFirstResponder()
                     //calendarをmonthModeに
                     calendar.setScope(.month, animated: true)
+                    textView.resignFirstResponder()
                 }
-            }else{
-                //calendarをweekModeに
-                calendar.setScope(.week, animated: true)
             }
+
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.configureObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeObserver() // Notificationを画面が消えるときに削除
+    }
+    
+    // Notificationを設定
+    func configureObserver() {
+        let notification = NotificationCenter.default
+        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+ //       notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    // Notificationを削除
+    func removeObserver() {
+        let notification = NotificationCenter.default
+        notification.removeObserver(self)
+    }
+    
+    // キーボードが現れた時に、calendarをweekModeにする
+    func keyboardWillShow(notification: Notification?) {
+        calendar.setScope(.week, animated: true)
+    }
+    //キーボードが消える時にmonthMode
+   func keyboardWillHide(notification: Notification?) {
+        calendar.setScope(.month, animated: true)
+    }
+
     /*
     // MARK: - Navigation
 
@@ -205,4 +235,29 @@ class CalendarViewController: UIViewController,FSCalendarDelegate,FSCalendarData
     }
     */
 
+}
+//キーボードに完了ボタン追加
+extension CalendarViewController: UITextViewDelegate,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance{
+    func addToolBar(textView: UITextView,calendar: FSCalendar){
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(donePressed))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelPressed))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        toolBar.sizeToFit()
+        textView.delegate = self
+        textView.inputAccessoryView = toolBar
+    }
+    @objc func donePressed(){
+        calendar.setScope(.month, animated: true)
+        view.endEditing(true)
+    }
+    @objc func cancelPressed(){
+        calendar.setScope(.month, animated: true)
+        view.endEditing(true) // or do something
+    }
 }
