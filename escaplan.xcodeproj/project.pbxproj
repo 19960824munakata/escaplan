@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79F4B8836BB940156032D249 /* Pods_escaplanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18117EDF93326F1A53725268 /* Pods_escaplanUITests.framework */; };
+		931211031FBDC1900049EB87 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 931211021FBDC1900049EB87 /* RealmSwift.framework */; };
+		931211051FBDC1A00049EB87 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 931211041FBDC1A00049EB87 /* Realm.framework */; };
 		9399FAD01F8647BD009CEE61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399FACF1F8647BD009CEE61 /* AppDelegate.swift */; };
 		9399FAD21F8647BD009CEE61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399FAD11F8647BD009CEE61 /* ViewController.swift */; };
 		9399FAD51F8647BD009CEE61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9399FAD31F8647BD009CEE61 /* Main.storyboard */; };
@@ -15,6 +18,14 @@
 		9399FADD1F8647BD009CEE61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9399FADB1F8647BD009CEE61 /* LaunchScreen.storyboard */; };
 		9399FAE81F8647BE009CEE61 /* escaplanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399FAE71F8647BE009CEE61 /* escaplanTests.swift */; };
 		9399FAF31F8647BE009CEE61 /* escaplanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399FAF21F8647BE009CEE61 /* escaplanUITests.swift */; };
+		93CD17691F9135D20052359E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CD17681F9135D20052359E /* CalendarViewController.swift */; };
+		93CD176B1F9197D90052359E /* CalculateCalendarLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93CD176A1F9197D90052359E /* CalculateCalendarLogic.framework */; };
+		93CD176D1F9197DE0052359E /* FSCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93CD176C1F9197DE0052359E /* FSCalendar.framework */; };
+		93CD17711F91BA970052359E /* PopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93CD17701F91BA970052359E /* PopUpView.xib */; };
+		93CD17731F91BAED0052359E /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CD17721F91BAED0052359E /* PopUpView.swift */; };
+		93CD17751F91CC480052359E /* TextEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CD17741F91CC480052359E /* TextEditViewController.swift */; };
+		A3AB0558332DA0D462149472 /* Pods_escaplanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 095AA4744BF49B4F141092F2 /* Pods_escaplanTests.framework */; };
+		C6A8ED1AFFA087E13F5D8466 /* Pods_escaplan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCD39ED27FC472574AB48F5 /* Pods_escaplan.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +46,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		095AA4744BF49B4F141092F2 /* Pods_escaplanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_escaplanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18117EDF93326F1A53725268 /* Pods_escaplanUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_escaplanUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		227BBDE546DA3CA796EB65BC /* Pods-escaplanUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-escaplanUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-escaplanUITests/Pods-escaplanUITests.release.xcconfig"; sourceTree = "<group>"; };
+		88176C0FF1421D24B77E2751 /* Pods-escaplanUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-escaplanUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-escaplanUITests/Pods-escaplanUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9195751357897DD5B8A0E749 /* Pods-escaplanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-escaplanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-escaplanTests/Pods-escaplanTests.release.xcconfig"; sourceTree = "<group>"; };
+		931211021FBDC1900049EB87 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../../Library/Developer/Xcode/DerivedData/escaplan-bebzwixzbrkrliasjqiokjzfybjt/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
+		931211041FBDC1A00049EB87 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../../Library/Developer/Xcode/DerivedData/escaplan-bebzwixzbrkrliasjqiokjzfybjt/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
+		933EAD071FBDB39F00CF158A /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "Pods/../build/Debug-iphoneos/Realm/Realm.framework"; sourceTree = "<group>"; };
+		933EAD091FBDB3A500CF158A /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		9399FACC1F8647BD009CEE61 /* escaplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = escaplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9399FACF1F8647BD009CEE61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9399FAD11F8647BD009CEE61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +69,16 @@
 		9399FAEE1F8647BE009CEE61 /* escaplanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = escaplanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9399FAF21F8647BE009CEE61 /* escaplanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = escaplanUITests.swift; sourceTree = "<group>"; };
 		9399FAF41F8647BE009CEE61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93CD17681F9135D20052359E /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		93CD176A1F9197D90052359E /* CalculateCalendarLogic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CalculateCalendarLogic.framework; path = "../../../../Library/Developer/Xcode/DerivedData/escaplan-bebzwixzbrkrliasjqiokjzfybjt/Build/Products/Debug-iphonesimulator/CalculateCalendarLogic/CalculateCalendarLogic.framework"; sourceTree = "<group>"; };
+		93CD176C1F9197DE0052359E /* FSCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FSCalendar.framework; path = "../../../../Library/Developer/Xcode/DerivedData/escaplan-bebzwixzbrkrliasjqiokjzfybjt/Build/Products/Debug-iphonesimulator/FSCalendar/FSCalendar.framework"; sourceTree = "<group>"; };
+		93CD17701F91BA970052359E /* PopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpView.xib; sourceTree = "<group>"; };
+		93CD17721F91BAED0052359E /* PopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		93CD17741F91CC480052359E /* TextEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditViewController.swift; sourceTree = "<group>"; };
+		A37949DE43A589D2BCFA6FF3 /* Pods-escaplan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-escaplan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-escaplan/Pods-escaplan.debug.xcconfig"; sourceTree = "<group>"; };
+		B38BEA6643F794B1A3285515 /* Pods-escaplan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-escaplan.release.xcconfig"; path = "Pods/Target Support Files/Pods-escaplan/Pods-escaplan.release.xcconfig"; sourceTree = "<group>"; };
+		CCCD39ED27FC472574AB48F5 /* Pods_escaplan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_escaplan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2AC18F1131F2FF3A6B7B86E /* Pods-escaplanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-escaplanTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-escaplanTests/Pods-escaplanTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +86,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				931211051FBDC1A00049EB87 /* Realm.framework in Frameworks */,
+				931211031FBDC1900049EB87 /* RealmSwift.framework in Frameworks */,
+				93CD176D1F9197DE0052359E /* FSCalendar.framework in Frameworks */,
+				93CD176B1F9197D90052359E /* CalculateCalendarLogic.framework in Frameworks */,
+				C6A8ED1AFFA087E13F5D8466 /* Pods_escaplan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3AB0558332DA0D462149472 /* Pods_escaplanTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +106,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79F4B8836BB940156032D249 /* Pods_escaplanUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30A4267179FC6B05E6BAD6F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				931211041FBDC1A00049EB87 /* Realm.framework */,
+				931211021FBDC1900049EB87 /* RealmSwift.framework */,
+				933EAD091FBDB3A500CF158A /* RealmSwift.framework */,
+				933EAD071FBDB39F00CF158A /* Realm.framework */,
+				93CD176C1F9197DE0052359E /* FSCalendar.framework */,
+				93CD176A1F9197D90052359E /* CalculateCalendarLogic.framework */,
+				CCCD39ED27FC472574AB48F5 /* Pods_escaplan.framework */,
+				095AA4744BF49B4F141092F2 /* Pods_escaplanTests.framework */,
+				18117EDF93326F1A53725268 /* Pods_escaplanUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9399FAC31F8647BD009CEE61 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +136,8 @@
 				9399FAE61F8647BE009CEE61 /* escaplanTests */,
 				9399FAF11F8647BE009CEE61 /* escaplanUITests */,
 				9399FACD1F8647BD009CEE61 /* Products */,
+				E870F44EB65BCD87418E22DC /* Pods */,
+				30A4267179FC6B05E6BAD6F1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,8 +158,12 @@
 				9399FAD11F8647BD009CEE61 /* ViewController.swift */,
 				9399FAD31F8647BD009CEE61 /* Main.storyboard */,
 				9399FAD91F8647BD009CEE61 /* Assets.xcassets */,
+				93CD17701F91BA970052359E /* PopUpView.xib */,
+				93CD17741F91CC480052359E /* TextEditViewController.swift */,
+				93CD17721F91BAED0052359E /* PopUpView.swift */,
 				9399FADB1F8647BD009CEE61 /* LaunchScreen.storyboard */,
 				9399FADE1F8647BD009CEE61 /* Info.plist */,
+				93CD17681F9135D20052359E /* CalendarViewController.swift */,
 				9399FAD61F8647BD009CEE61 /* escaplan.xcdatamodeld */,
 			);
 			path = escaplan;
@@ -128,6 +187,19 @@
 			path = escaplanUITests;
 			sourceTree = "<group>";
 		};
+		E870F44EB65BCD87418E22DC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A37949DE43A589D2BCFA6FF3 /* Pods-escaplan.debug.xcconfig */,
+				B38BEA6643F794B1A3285515 /* Pods-escaplan.release.xcconfig */,
+				E2AC18F1131F2FF3A6B7B86E /* Pods-escaplanTests.debug.xcconfig */,
+				9195751357897DD5B8A0E749 /* Pods-escaplanTests.release.xcconfig */,
+				88176C0FF1421D24B77E2751 /* Pods-escaplanUITests.debug.xcconfig */,
+				227BBDE546DA3CA796EB65BC /* Pods-escaplanUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +207,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9399FAF71F8647BE009CEE61 /* Build configuration list for PBXNativeTarget "escaplan" */;
 			buildPhases = (
+				C60A956F1B08FE2869024205 /* [CP] Check Pods Manifest.lock */,
 				9399FAC81F8647BD009CEE61 /* Sources */,
 				9399FAC91F8647BD009CEE61 /* Frameworks */,
 				9399FACA1F8647BD009CEE61 /* Resources */,
+				6A3AA9E7F9E26F8F49B41D9F /* [CP] Embed Pods Frameworks */,
+				20039BF1D3840F06FB25B921 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +227,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9399FAFA1F8647BE009CEE61 /* Build configuration list for PBXNativeTarget "escaplanTests" */;
 			buildPhases = (
+				218E2A5C2F23FD31E4A96107 /* [CP] Check Pods Manifest.lock */,
 				9399FADF1F8647BE009CEE61 /* Sources */,
 				9399FAE01F8647BE009CEE61 /* Frameworks */,
 				9399FAE11F8647BE009CEE61 /* Resources */,
+				ADBF487891B66ECBFC8BC02D /* [CP] Embed Pods Frameworks */,
+				3F83D2A7CCCF47ADB1D3F2E9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +248,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9399FAFD1F8647BE009CEE61 /* Build configuration list for PBXNativeTarget "escaplanUITests" */;
 			buildPhases = (
+				76AF2EAED8E66BCB2776DDDF /* [CP] Check Pods Manifest.lock */,
 				9399FAEA1F8647BE009CEE61 /* Sources */,
 				9399FAEB1F8647BE009CEE61 /* Frameworks */,
 				9399FAEC1F8647BE009CEE61 /* Resources */,
+				C7A1D1DF3A966020A999020F /* [CP] Embed Pods Frameworks */,
+				05A2E1B67DEAE793436670F1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,7 +277,7 @@
 				TargetAttributes = {
 					9399FACB1F8647BD009CEE61 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 46GPTHVUZ6;
+						DevelopmentTeam = AS5B9CZ49W;
 						ProvisioningStyle = Automatic;
 					};
 					9399FAE21F8647BE009CEE61 = {
@@ -239,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9399FADD1F8647BD009CEE61 /* LaunchScreen.storyboard in Resources */,
+				93CD17711F91BA970052359E /* PopUpView.xib in Resources */,
 				9399FADA1F8647BD009CEE61 /* Assets.xcassets in Resources */,
 				9399FAD51F8647BD009CEE61 /* Main.storyboard in Resources */,
 			);
@@ -260,11 +342,174 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		05A2E1B67DEAE793436670F1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-escaplanUITests/Pods-escaplanUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		20039BF1D3840F06FB25B921 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-escaplan/Pods-escaplan-resources.sh",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-escaplan/Pods-escaplan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		218E2A5C2F23FD31E4A96107 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-escaplanTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3F83D2A7CCCF47ADB1D3F2E9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-escaplanTests/Pods-escaplanTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6A3AA9E7F9E26F8F49B41D9F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-escaplan/Pods-escaplan-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CalculateCalendarLogic/CalculateCalendarLogic.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CalculateCalendarLogic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-escaplan/Pods-escaplan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76AF2EAED8E66BCB2776DDDF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-escaplanUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADBF487891B66ECBFC8BC02D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-escaplanTests/Pods-escaplanTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C60A956F1B08FE2869024205 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-escaplan-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7A1D1DF3A966020A999020F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-escaplanUITests/Pods-escaplanUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9399FAC81F8647BD009CEE61 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93CD17731F91BAED0052359E /* PopUpView.swift in Sources */,
+				93CD17751F91CC480052359E /* TextEditViewController.swift in Sources */,
+				93CD17691F9135D20052359E /* CalendarViewController.swift in Sources */,
 				9399FAD81F8647BD009CEE61 /* escaplan.xcdatamodeld in Sources */,
 				9399FAD21F8647BD009CEE61 /* ViewController.swift in Sources */,
 				9399FAD01F8647BD009CEE61 /* AppDelegate.swift in Sources */,
@@ -419,11 +664,14 @@
 		};
 		9399FAF81F8647BE009CEE61 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A37949DE43A589D2BCFA6FF3 /* Pods-escaplan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 46GPTHVUZ6;
+				DEVELOPMENT_TEAM = AS5B9CZ49W;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = escaplan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.domain.escaplan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -432,11 +680,18 @@
 		};
 		9399FAF91F8647BE009CEE61 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B38BEA6643F794B1A3285515 /* Pods-escaplan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 46GPTHVUZ6;
+				DEVELOPMENT_TEAM = AS5B9CZ49W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Realm",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/RealmSwift",
+				);
 				INFOPLIST_FILE = escaplan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.domain.escaplan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -445,6 +700,7 @@
 		};
 		9399FAFB1F8647BE009CEE61 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2AC18F1131F2FF3A6B7B86E /* Pods-escaplanTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -460,6 +716,7 @@
 		};
 		9399FAFC1F8647BE009CEE61 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9195751357897DD5B8A0E749 /* Pods-escaplanTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -475,6 +732,7 @@
 		};
 		9399FAFE1F8647BE009CEE61 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88176C0FF1421D24B77E2751 /* Pods-escaplanUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 46GPTHVUZ6;
@@ -489,6 +747,7 @@
 		};
 		9399FAFF1F8647BE009CEE61 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 227BBDE546DA3CA796EB65BC /* Pods-escaplanUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 46GPTHVUZ6;
@@ -520,6 +779,7 @@
 				9399FAF91F8647BE009CEE61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9399FAFA1F8647BE009CEE61 /* Build configuration list for PBXNativeTarget "escaplanTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +788,7 @@
 				9399FAFC1F8647BE009CEE61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9399FAFD1F8647BE009CEE61 /* Build configuration list for PBXNativeTarget "escaplanUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +797,7 @@
 				9399FAFF1F8647BE009CEE61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
