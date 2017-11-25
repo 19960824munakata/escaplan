@@ -102,7 +102,7 @@
                                         <state key="normal" title="Button" image="plus"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.74216037326388884" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="aeN-UA-qwS" firstAttribute="leading" secondItem="aEr-bj-U8A" secondAttribute="leading" constant="8" id="6g2-4c-zZD"/>
                                     <constraint firstItem="aeN-UA-qwS" firstAttribute="top" secondItem="aEr-bj-U8A" secondAttribute="top" constant="4" id="a91-N4-z94"/>
