@@ -40,9 +40,12 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         //placeholderの設定
         textView.placeHolderColor = UIColor.lightGray
         textView.placeHolder = dummyText
-        //データがあれば
-       if let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: selectDay){            //Realmから呼び出し
-            textView.text = data.plan
+        //データの有無
+        let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: selectDay)
+        if (data != nil && data?.plan != nil){            //Realmから呼び出し
+            //placeholdarラベルを透明化
+            textView.placeHolderLabel.alpha = 0
+            textView.text = data?.plan
         }else{
             //なければ
             textView.text = nil
@@ -121,16 +124,35 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     
     //カレンダータップイベント
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        //Realmのインスタンスを取得
+        let realm = try! Realm()
+        //カレンダーをmonthModeに
+        calendar.setScope(.month, animated: true)
         let d = getDay(date)
         print(String(d.0) + "年" + String(d.1) + "月" + String(d.2) + "日")
         dayLabel.text = String(d.1) + "月" + String(d.2) + "日の予定"
+        //キーボードをしまう
+        if(textView.isFirstResponder){
+            textView.resignFirstResponder()
+            //テキストが書かれていたら
+            if(textView.text != nil){
+                let add = calendarPlan()
+                add.saveDay = selectDay
+                add.plan = textView.text
+                try! realm.write {
+                    realm.add(add,update: true)     //事前にデータがあれば更新する、なければ追加
+                }
+            }
+        }
+        
         selectDay = String(d.0)+String(d.1)+String(d.2)
-        //Realmのインスタンスを取得
-        let realm = try! Realm()
-        //データがあれば
-        if let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: selectDay){
+        //データの有無
+        let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: selectDay)
+        if (data != nil && data?.plan != nil){
+            //placeholdarラベルを透明化
+            textView.placeHolderLabel.alpha = 0
             //Realmから呼び出し
-            textView.text = data.plan
+            textView.text = data?.plan
         }else{
             //データがなければ
             textView.text = nil
@@ -176,8 +198,9 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     
     //calendarView以外をタップした時
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         super.touchesBegan(touches, with: event)
+        //Realmのインスタンスを取得
+        let realm = try! Realm()
         for touch: UITouch in touches {
             let tag = touch.view!.tag
             //textView以外をタッチした時
@@ -187,6 +210,15 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
                     //calendarをmonthModeに
                     calendar.setScope(.month, animated: true)
                     textView.resignFirstResponder()
+                    //テキストが書かれていたら
+                    if(textView.text != nil){
+                        let add = calendarPlan()
+                        add.saveDay = selectDay
+                        add.plan = textView.text
+                        try! realm.write {
+                            realm.add(add,update: true)     //事前にデータがあれば更新する、なければ追加
+                        }
+                    }
                 }
             }
 
@@ -221,9 +253,9 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         calendar.setScope(.week, animated: true)
     }
     //キーボードが消える時にmonthMode
-   func keyboardWillHide(notification: Notification?) {
+/*   func keyboardWillHide(notification: Notification?) {
         calendar.setScope(.month, animated: true)
-    }
+    }*/
 
     /*
     // MARK: - Navigation
@@ -254,10 +286,34 @@ extension CalendarViewController: UITextViewDelegate,FSCalendarDelegate,FSCalend
     }
     @objc func donePressed(){
         calendar.setScope(.month, animated: true)
+        //Realmのインスタンスを取得
+        let realm = try! Realm()
+        //テキストが書かれていたら
+        if(textView.text != nil){
+            let add = calendarPlan()
+            add.saveDay = selectDay
+            add.plan = textView.text
+            try! realm.write {
+                realm.add(add,update: true)     //事前にデータがあれば更新する、なければ追加
+            }
+        }
         view.endEditing(true)
     }
     @objc func cancelPressed(){
         calendar.setScope(.month, animated: true)
+        let realm = try! Realm()
+        //データの有無
+        let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: selectDay)
+        if (data != nil && data?.plan != nil){            //Realmから呼び出し
+            //placeholdarラベルを透明化
+            textView.placeHolderLabel.alpha = 0
+            textView.text = data?.plan
+        }else{
+            //なければ
+            textView.text = nil
+            //placeholdarラベルを可視化
+            textView.placeHolderLabel.alpha = 1
+        }
         view.endEditing(true) // or do something
     }
 }
