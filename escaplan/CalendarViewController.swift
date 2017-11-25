@@ -11,16 +11,19 @@ import FSCalendar
 import CalculateCalendarLogic
 import RealmSwift
 
-class CalendarViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance,UIGestureRecognizerDelegate,UITableViewDelegate, UITableViewDataSource{
+class CalendarViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance,UIGestureRecognizerDelegate,UITextViewDelegate{
 
     @IBOutlet weak var calendar: FSCalendar!
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendarHeight: NSLayoutConstraint!
+    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var textView: PlaceHolderTextView!
     
     
-    let tableTitle = [["今日の予定","hogehoge"]]
+    //予定がない時に表示する文字
+    let dummyText : NSString = "予定なし"
+    //選択した(タップした)日付の保存 :初期値は今日の日付
+    var selectDay = ""
 
-//    @IBOutlet weak var calendarHeightConstraints: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +31,24 @@ class CalendarViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         // FSCalendarのデリゲートの設定(おまじまい的な感じ?)
         self.calendar.dataSource = self
         self.calendar.delegate = self
-        
-        print(getDay(calendar.today!))
+        self.textView.delegate = self
+        let today = getDay(calendar.today!)
+        dayLabel.text = String(today.1) + "月" + String(today.2) + "日の予定"
+        selectDay = String(today.0)+String(today.1)+String(today.2)
+        //Realmのインスタンスを取得
+        let realm = try! Realm()
+        //placeholderの設定
+        textView.placeHolderColor = UIColor.lightGray
+        textView.placeHolder = dummyText
+        //データがあれば
+       if let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: selectDay){            //Realmから呼び出し
+            textView.text = data.plan
+        }else{
+            //なければ
+            textView.text = nil
+            //placeholdarラベルを可視化
+            textView.placeHolderLabel.alpha = 1
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -101,17 +120,30 @@ class CalendarViewController: UIViewController,FSCalendarDelegate,FSCalendarData
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let d = getDay(date)
         print(String(d.0) + "年" + String(d.1) + "月" + String(d.2) + "日")
-//        self.view.addGestureRecognizer(self.scopeGesture)
-//      self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
-        self.calendar.setScope(.week, animated: true)
-    }
-    
-    @IBAction func exampple(_ sender: Any) {
-
-        popinit();
+        dayLabel.text = String(d.1) + "月" + String(d.2) + "日の予定"
+        selectDay = String(d.0)+String(d.1)+String(d.2)
+        //Realmのインスタンスを取得
+        let realm = try! Realm()
+        //データがあれば
+        if let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: selectDay){
+            //Realmから呼び出し
+            textView.text = data.plan
+        }else{
+            //データがなければ
+            textView.text = nil
+            //placeholdarラベルを可視化
+            textView.placeHolderLabel.alpha = 1
+        }
+        //calendarをweekModeに
+//        self.calendar.setScope(.week, animated: true)
+        
         
     }
     
+    @IBAction func exampple(_ sender: Any) {
+        popinit();
+    }
+    //calendarのサイズ調整
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendarHeight.constant = bounds.height
         self.view.layoutIfNeeded()
@@ -142,24 +174,27 @@ class CalendarViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         self.view.addSubview(popupView)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableTitle[section].count - 1
+    //calendarView以外をタップした時
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        super.touchesBegan(touches, with: event)
+        for touch: UITouch in touches {
+            let tag = touch.view!.tag
+            //textView以外をタッチした時
+            if tag != 123 {
+                //キーボードをしまう
+                if(textView.isFirstResponder){
+                    textView.resignFirstResponder()
+                    //calendarをmonthModeに
+                    calendar.setScope(.month, animated: true)
+                }
+            }else{
+                //calendarをweekModeに
+                calendar.setScope(.week, animated: true)
+            }
+        }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "myPlan")
-        cell.textLabel?.text = tableTitle[indexPath.section][indexPath.row + 1]
-        return cell
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return tableTitle.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return tableTitle[section][0]
-    }
     /*
     // MARK: - Navigation
 

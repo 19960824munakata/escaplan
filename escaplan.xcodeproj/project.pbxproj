@@ -10,6 +10,8 @@
 		79F4B8836BB940156032D249 /* Pods_escaplanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18117EDF93326F1A53725268 /* Pods_escaplanUITests.framework */; };
 		931211031FBDC1900049EB87 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 931211021FBDC1900049EB87 /* RealmSwift.framework */; };
 		931211051FBDC1A00049EB87 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 931211041FBDC1A00049EB87 /* Realm.framework */; };
+		9342EB001FC9AE0D004A4425 /* CalendarPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342EAFF1FC9AE0D004A4425 /* CalendarPlan.swift */; };
+		9342EB021FC9C5D1004A4425 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342EB011FC9C5D1004A4425 /* CustomTextView.swift */; };
 		9399FAD01F8647BD009CEE61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399FACF1F8647BD009CEE61 /* AppDelegate.swift */; };
 		9399FAD21F8647BD009CEE61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399FAD11F8647BD009CEE61 /* ViewController.swift */; };
 		9399FAD51F8647BD009CEE61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9399FAD31F8647BD009CEE61 /* Main.storyboard */; };
@@ -55,6 +57,8 @@
 		931211041FBDC1A00049EB87 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../../Library/Developer/Xcode/DerivedData/escaplan-bebzwixzbrkrliasjqiokjzfybjt/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
 		933EAD071FBDB39F00CF158A /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "Pods/../build/Debug-iphoneos/Realm/Realm.framework"; sourceTree = "<group>"; };
 		933EAD091FBDB3A500CF158A /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
+		9342EAFF1FC9AE0D004A4425 /* CalendarPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPlan.swift; sourceTree = "<group>"; };
+		9342EB011FC9C5D1004A4425 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		9399FACC1F8647BD009CEE61 /* escaplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = escaplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9399FACF1F8647BD009CEE61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9399FAD11F8647BD009CEE61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -156,9 +160,11 @@
 			children = (
 				9399FACF1F8647BD009CEE61 /* AppDelegate.swift */,
 				9399FAD11F8647BD009CEE61 /* ViewController.swift */,
+				9342EAFF1FC9AE0D004A4425 /* CalendarPlan.swift */,
 				9399FAD31F8647BD009CEE61 /* Main.storyboard */,
 				9399FAD91F8647BD009CEE61 /* Assets.xcassets */,
 				93CD17701F91BA970052359E /* PopUpView.xib */,
+				9342EB011FC9C5D1004A4425 /* CustomTextView.swift */,
 				93CD17741F91CC480052359E /* TextEditViewController.swift */,
 				93CD17721F91BAED0052359E /* PopUpView.swift */,
 				9399FADB1F8647BD009CEE61 /* LaunchScreen.storyboard */,
@@ -507,9 +513,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9342EB001FC9AE0D004A4425 /* CalendarPlan.swift in Sources */,
 				93CD17731F91BAED0052359E /* PopUpView.swift in Sources */,
 				93CD17751F91CC480052359E /* TextEditViewController.swift in Sources */,
 				93CD17691F9135D20052359E /* CalendarViewController.swift in Sources */,
+				9342EB021FC9C5D1004A4425 /* CustomTextView.swift in Sources */,
 				9399FAD81F8647BD009CEE61 /* escaplan.xcdatamodeld in Sources */,
 				9399FAD21F8647BD009CEE61 /* ViewController.swift in Sources */,
 				9399FAD01F8647BD009CEE61 /* AppDelegate.swift in Sources */,
