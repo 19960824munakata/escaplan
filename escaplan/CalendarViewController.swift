@@ -23,7 +23,8 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     let dummyText : NSString = "予定なし"
     //選択した(タップした)日付の保存 :初期値は今日の日付
     var selectDay = ""
-
+    //イベント画像添付判定に使用
+    var didload = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,37 +119,86 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         }
         
         return nil
-        
-        
     }
+    
+    //予定がある日に画像を配置する
+    func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
+        let image:UIImage = UIImage(named:"100")!
+        //初回かどうか
+        switch didload{
+        case 0:
+            //初回起動時、カレンダー全ての日付に対して行う
+            //予定があれば
+            if eventCheck(date){
+                return image
+            }
+        case 1:
+            if selectEventCheck(date){
+                return image
+            }
+        default:
+            break
+        }
+        return nil
+    }
+    //予定があるかないか
+    func eventCheck(_ date: Date) -> Bool {
+        //カレンダークラスのインスタンス
+        let tmpCalendar = Calendar(identifier: .gregorian)
+        // 判定を行う日にちの年、月、日を取得
+        let year = tmpCalendar.component(.year, from: date)
+        let month = tmpCalendar.component(.month, from: date)
+        let day = tmpCalendar.component(.day, from: date)
+        
+        //Realmのインスタンスを取得
+        let realm = try! Realm()
+        let d = String(year)+String(month)+String(day)
+        let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: d)
+        if (data != nil && data?.plan != nil && data?.plan != ""){
+            return true
+        }else{
+            return false
+        }
+    }
+        
+    func selectEventCheck(_ date:Date) ->Bool{
+        let day = getDay(date)
+        //Realmのインスタンスを取得
+        let realm = try! Realm()
+        let d = String(day.0)+String(day.1)+String(day.2)
+        let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: d)
+        if (data != nil && data?.plan != nil && data?.plan != ""){
+            return true
+        }else{
+            return false
+        }
+    }
+    
     
     //カレンダータップイベント
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         //Realmのインスタンスを取得
         let realm = try! Realm()
-        //カレンダーをmonthModeに
-        calendar.setScope(.month, animated: true)
         let d = getDay(date)
         print(String(d.0) + "年" + String(d.1) + "月" + String(d.2) + "日")
         dayLabel.text = String(d.1) + "月" + String(d.2) + "日の予定"
         //キーボードをしまう
         if(textView.isFirstResponder){
-            textView.resignFirstResponder()
-            //テキストが書かれていたら
-            if(textView.text != nil){
-                let add = calendarPlan()
-                add.saveDay = selectDay
-                add.plan = textView.text
-                try! realm.write {
-                    realm.add(add,update: true)     //事前にデータがあれば更新する、なければ追加
-                }
+            let add = calendarPlan()
+            add.saveDay = selectDay
+            add.plan = textView.text
+            try! realm.write {
+                realm.add(add,update: true)     //事前にデータがあれば更新する、なければ追加
             }
+            textView.resignFirstResponder()
         }
+        //カレンダーをmonthModeに
+        calendar.setScope(.month, animated: true)
         
         selectDay = String(d.0)+String(d.1)+String(d.2)
         //データの有無
         let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: selectDay)
-        if (data != nil && data?.plan != nil){
+        if (data != nil && data?.plan != nil && data?.plan != ""){
             //placeholdarラベルを透明化
             textView.placeHolderLabel.alpha = 0
             //Realmから呼び出し
@@ -207,18 +257,15 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
             if tag != 123 {
                 //キーボードをしまう
                 if(textView.isFirstResponder){
+                    let add = calendarPlan()
+                    add.saveDay = selectDay
+                    add.plan = textView.text
+                    try! realm.write {
+                        realm.add(add,update: true)     //事前にデータがあれば更新する、なければ追加
+                    }
                     //calendarをmonthModeに
                     calendar.setScope(.month, animated: true)
                     textView.resignFirstResponder()
-                    //テキストが書かれていたら
-                    if(textView.text != nil){
-                        let add = calendarPlan()
-                        add.saveDay = selectDay
-                        add.plan = textView.text
-                        try! realm.write {
-                            realm.add(add,update: true)     //事前にデータがあれば更新する、なければ追加
-                        }
-                    }
                 }
             }
 
@@ -250,6 +297,7 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     
     // キーボードが現れた時に、calendarをweekModeにする
     func keyboardWillShow(notification: Notification?) {
+        didload = 1
         calendar.setScope(.week, animated: true)
     }
     //キーボードが消える時にmonthMode
@@ -275,8 +323,8 @@ extension CalendarViewController: UITextViewDelegate,FSCalendarDelegate,FSCalend
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
         toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(donePressed))
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelPressed))
+        let doneButton = UIBarButtonItem(title: "完了", style: UIBarButtonItemStyle.done, target: self, action: #selector(donePressed))
+        let cancelButton = UIBarButtonItem(title: "キャンセル", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelPressed))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
@@ -285,26 +333,24 @@ extension CalendarViewController: UITextViewDelegate,FSCalendarDelegate,FSCalend
         textView.inputAccessoryView = toolBar
     }
     @objc func donePressed(){
-        calendar.setScope(.month, animated: true)
         //Realmのインスタンスを取得
         let realm = try! Realm()
-        //テキストが書かれていたら
-        if(textView.text != nil){
-            let add = calendarPlan()
-            add.saveDay = selectDay
-            add.plan = textView.text
-            try! realm.write {
-                realm.add(add,update: true)     //事前にデータがあれば更新する、なければ追加
-            }
+
+        let add = calendarPlan()
+        add.saveDay = selectDay
+        add.plan = textView.text
+        try! realm.write {
+            realm.add(add,update: true)     //事前にデータがあれば更新する、なければ追加
         }
+        calendar.setScope(.month, animated: true)
         view.endEditing(true)
     }
     @objc func cancelPressed(){
-        calendar.setScope(.month, animated: true)
+
         let realm = try! Realm()
         //データの有無
         let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: selectDay)
-        if (data != nil && data?.plan != nil){            //Realmから呼び出し
+        if (data != nil && data?.plan != nil && data?.plan != ""){
             //placeholdarラベルを透明化
             textView.placeHolderLabel.alpha = 0
             textView.text = data?.plan
@@ -314,6 +360,7 @@ extension CalendarViewController: UITextViewDelegate,FSCalendarDelegate,FSCalend
             //placeholdarラベルを可視化
             textView.placeHolderLabel.alpha = 1
         }
+        calendar.setScope(.month, animated: true)
         view.endEditing(true) // or do something
     }
 }

@@ -12,7 +12,6 @@
     <customFonts key="customFonts">
         <array key="HiraginoMincho.ttc">
             <string>HiraMinProN-W3</string>
-            <string>HiraMinProN-W6</string>
         </array>
     </customFonts>
     <scenes>
@@ -28,41 +27,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title" translatesAutoresizingMaskIntoConstraints="NO" id="q5c-gx-Hti">
-                                <rect key="frame" x="-797" y="166" width="1969" height="84"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="84" id="TC7-ya-cbs"/>
-                                    <constraint firstAttribute="width" constant="1969" id="l4l-Fk-6Q9"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGy-rA-08k">
-                                <rect key="frame" x="97" y="503" width="181" height="60"/>
-                                <color key="backgroundColor" red="0.0" green="0.80406358506944442" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="R9d-J6-OCT"/>
-                                    <constraint firstAttribute="width" constant="181" id="axX-rv-OuL"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HiraMinProN-W6" family="Hiragino Mincho ProN" pointSize="29"/>
-                                <state key="normal" title="予定の編集">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="3HV-dP-KXN" kind="show" id="syg-SX-tqR"/>
-                                </connections>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJ7-2v-QOl">
+                                <rect key="frame" x="91" y="184" width="132" height="158"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ログイン"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="q5c-gx-Hti" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="146" id="914-qE-k2A"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dGy-rA-08k" secondAttribute="bottom" constant="104" id="PrY-mS-OiX"/>
-                            <constraint firstItem="q5c-gx-Hti" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RUa-Kq-Mv7"/>
-                            <constraint firstItem="dGy-rA-08k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="V1Z-ds-ACv"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6" y="382"/>
+            <point key="canvasLocation" x="96.799999999999997" y="145.27736131934034"/>
         </scene>
         <!--Data Source-->
         <scene sceneID="emV-WR-bIE">
@@ -83,7 +59,7 @@
                                         <rect key="frame" x="131" y="8" width="114" height="54"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="34"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeN-UA-qwS">
@@ -118,6 +94,14 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="331" id="EiN-Mg-sb8"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="todayColor">
+                                        <color key="value" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectionColor">
+                                        <color key="value" red="1" green="0.43529412150000002" blue="0.81176471709999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="3HV-dP-KXN" id="9T2-s0-eG2"/>
                                     <outlet property="delegate" destination="3HV-dP-KXN" id="GTa-GI-hui"/>
@@ -243,9 +227,5 @@ hoge</string>
     <resources>
         <image name="back" width="104" height="88"/>
         <image name="plus" width="200" height="200"/>
-        <image name="title" width="1969" height="550"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="9eq-ih-P8s"/>
-    </inferredMetricsTieBreakers>
 </document>
