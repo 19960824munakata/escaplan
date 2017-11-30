@@ -9,56 +9,144 @@
 import UIKit
 import CoreData
 import RealmSwift
+import NCMB
+import UserNotificationsUI
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let applicationkey = "5a2c96d04c8fc67d8c4653423a09ff36eedb89a686132ee8dd1aab871f8557ab"
+    let clientkey      = "9848d560daa19d869b52cc5bb9ef1c6accb9a3eae6e30ec2f9a5303d38e92d41"
+
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let config = Realm.Configuration(
-            // Set the new schema version. This must be greater than the previously used
-            // version (if you've never set a schema version before, the version is 0).
             schemaVersion: 1,
-            
-            // Set the block which will be called automatically when opening a Realm with
-            // a schema version lower than the one set above
             migrationBlock: { migration, oldSchemaVersion in
-                // We haven’t migrated anything yet, so oldSchemaVersion == 0
                 if (oldSchemaVersion < 1) {
-                    // Nothing to do!
-                    // Realm will automatically detect new properties and removed properties
-                    // And will update the schema on disk automatically
                 }
         })
-        
-        // Tell Realm to use this new configuration object for the default Realm
         Realm.Configuration.defaultConfiguration = config
+        _ = try! Realm()
         
-        // Now that we've told Realm how to handle the schema change, opening the file
-        // will automatically perform the migration
-        let realm = try! Realm()
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]){ (granted,error) in
+            if granted{
+                print("許可")
+                UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+            }else{
+                print("不可")
+            }
+        }
+        
+        //mBaas
+        NCMB.setApplicationKey(applicationkey, clientKey: clientkey)
+        // デバイストークンの要求
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            // Enable or disable features based on authorization.
+        }
+        application.registerForRemoteNotifications()
+        
+        
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        
+        Twitter.sharedInstance().start(withConsumerKey:"ypqNM52r27MMONEf3CagWvMYe",consumerSecret:"QOGNIE99BdTj9zsjS3EaYqk0OIXNwj1qvF5A0fylw9U7SCp0a8")
+        
+        if let session = Twitter.sharedInstance().sessionStore.session() {
+            print(session.userID)
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            //Storyboardを指定
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //Viewcontrollerを指定
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "calendarPage")
+            //rootViewControllerに入れる
+            self.window?.rootViewController = initialViewController
+            //表示
+            self.window?.makeKeyAndVisible()
+        } else {
+            print("アカウントはありません")
+        }
+        
         return true
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if Twitter.sharedInstance().application(app, open: url, options: options){
+            return true
+        }
+        return false
+    }
 
+    // Remote Notification のエラーを受け取る
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print(error)
+    }
+    
+    // Remote Notification の device token を表示
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        //mBaas
+        // 端末情報を扱うNCMBInstallationのインスタンスを作成
+        let installation = NCMBInstallation.current()
+        // デバイストークンの設定
+        installation?.setDeviceTokenFrom(deviceToken as Data!)
+        // 端末情報をデータストアに登録
+        installation?.saveInBackground { (error) -> Void in
+            if (error != nil){
+                // 端末情報の登録に失敗した時の処理
+                if ((error! as NSError).code == 409001){
+                    // 失敗した原因がデバイストークンの重複だった場合
+                    // 端末情報を上書き保存する
+                    self.updateExistInstallation(currentInstallation: installation!)
+                }else{
+                    // デバイストークンの重複以外のエラーが返ってきた場合
+                }
+            }else{
+                // 端末情報の登録に成功した時の処理
+            }
+        }
+    }
+    
+    //mBaas
+    // 端末情報を上書き保存するupdateExistInstallationメソッドを用意
+    func updateExistInstallation(currentInstallation : NCMBInstallation){
+        let installationQuery: NCMBQuery = NCMBInstallation.query()
+        installationQuery.whereKey("deviceToken", equalTo:currentInstallation.deviceToken)
+        do {
+            let searchDevice = try installationQuery.getFirstObject()
+            // 端末情報の検索に成功した場合
+            // 上書き保存する
+            currentInstallation.objectId = (searchDevice as AnyObject).objectId
+            currentInstallation.saveInBackground { (error) -> Void in
+                if (error != nil){
+                    // 端末情報の登録に失敗した時の処理
+                }else{
+                    // 端末情報の登録に成功した時の処理
+                }
+            }
+        } catch _ as NSError {
+            // 端末情報の検索に失敗した場合の処理
+        }
+    }
+    
+    
+    
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -79,17 +167,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let container = NSPersistentContainer(name: "escaplan")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
@@ -104,8 +181,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             do {
                 try context.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }

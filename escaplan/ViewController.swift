@@ -19,7 +19,21 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    @IBAction func loginTouch(_ sender: Any) {
+        Twitter.sharedInstance().logIn { session, error in
+            guard let session = session else {
+                if let error = error {
+                    print("エラーが起きました => \(error.localizedDescription)")
+                }
+                return
+            }
+            print("@\(session.userName)でログインしました")
+            let View = self.storyboard!.instantiateViewController(withIdentifier: "calendarPage")
+            self.present(View,animated: true,completion:nil)
+        }
+    }
+    
 
 }
 

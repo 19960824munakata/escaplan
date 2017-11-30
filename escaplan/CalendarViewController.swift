@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 import FSCalendar
 import CalculateCalendarLogic
 import RealmSwift
@@ -29,7 +30,7 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // FSCalendarのデリゲートの設定(おまじまい的な感じ?)
+        // デリゲートの設定
         self.calendar.dataSource = self
         self.calendar.delegate = self
         self.textView.delegate = self

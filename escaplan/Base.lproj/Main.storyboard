@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3HV-dP-KXN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,13 +27,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJ7-2v-QOl">
-                                <rect key="frame" x="91" y="184" width="132" height="158"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJ7-2v-QOl">
+                                <rect key="frame" x="156" y="269" width="62" height="129"/>
                                 <state key="normal" title="ログイン"/>
+                                <connections>
+                                    <action selector="loginTouch:" destination="BYZ-38-t0r" eventType="touchDown" id="Tju-fM-jNQ"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通知をオンにした後、再起動をお願いします。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLs-zk-dPQ">
+                                <rect key="frame" x="44" y="193" width="283" height="75"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="このアプリは通知をオンにしないと使用できません。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgF-a1-34e">
+                                <rect key="frame" x="44" y="137" width="283" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="VJ7-2v-QOl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4Vs-5K-BdB"/>
+                            <constraint firstItem="VJ7-2v-QOl" firstAttribute="top" secondItem="jgF-a1-34e" secondAttribute="bottom" constant="91" id="5rK-LN-Omi"/>
+                            <constraint firstItem="bLs-zk-dPQ" firstAttribute="top" secondItem="jgF-a1-34e" secondAttribute="bottom" constant="15" id="IWd-Yz-bXi"/>
+                            <constraint firstItem="jgF-a1-34e" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="117" id="IfC-oS-KPe"/>
+                            <constraint firstItem="VJ7-2v-QOl" firstAttribute="top" secondItem="bLs-zk-dPQ" secondAttribute="bottom" constant="1" id="OkO-R5-sIt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jgF-a1-34e" secondAttribute="trailing" constant="32" id="W27-jt-Tm9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bLs-zk-dPQ" secondAttribute="trailing" constant="32" id="aqk-7r-Ip3"/>
+                            <constraint firstItem="VJ7-2v-QOl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mgq-hB-XTz"/>
+                            <constraint firstItem="bLs-zk-dPQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="28" id="pex-5c-nJ8"/>
+                            <constraint firstItem="jgF-a1-34e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="28" id="yai-o3-CPp"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -43,7 +69,7 @@
         <!--Data Source-->
         <scene sceneID="emV-WR-bIE">
             <objects>
-                <viewController id="3HV-dP-KXN" customClass="CalendarViewController" customModule="escaplan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="calendarPage" storyboardIdentifier="calendarPage" id="3HV-dP-KXN" customClass="CalendarViewController" customModule="escaplan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MzI-Dy-MIZ"/>
                         <viewControllerLayoutGuide type="bottom" id="jw0-kF-F78"/>
@@ -101,6 +127,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectionColor">
                                         <color key="value" red="1" green="0.43529412150000002" blue="0.81176471709999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="headerDateFormat" value="yyyy  MM月"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="3HV-dP-KXN" id="9T2-s0-eG2"/>
@@ -228,4 +255,7 @@ hoge</string>
         <image name="back" width="104" height="88"/>
         <image name="plus" width="200" height="200"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Bhi-OF-g9X"/>
+    </inferredMetricsTieBreakers>
 </document>
