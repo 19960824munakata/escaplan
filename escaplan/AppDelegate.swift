@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let clientkey      = "9848d560daa19d869b52cc5bb9ef1c6accb9a3eae6e30ec2f9a5303d38e92d41"
     var backgroundTaskID : UIBackgroundTaskIdentifier = 0
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let config = Realm.Configuration(
@@ -69,7 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         musical.audioPlayerInstance.play()
-        
+        let realm = try! Realm()
+
         let calendar = Calendar.current
         let date = Date()
         let comps = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
@@ -81,33 +81,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let now = String(comps.year!)+"年"+String(comps.month!)+"月"+String(comps.day!)+"日"+String(comps.hour!)+":"+String(comps.minute!)+":"+String(comps.second!)
         let params = ["status": (String(now) + "中間発表テスト")]
         let request = apiClient.urlRequest(withMethod: "POST", url: statusesShowEndpoint, parameters: params, error: &clientError)
-        apiClient.sendTwitterRequest(request) { (response, responseData, error) -> Void in
-            if let err = error {
-                print("Error: \(err.localizedDescription)")
-                let push = NCMBPush()
-                let data_iOS = ["contentAvailable" : true] as [String : Any]
-                push.setData(data_iOS)
-                push.setPushToIOS(true)
-                push.setImmediateDeliveryFlag(true) // 即時配信
-                push.sendInBackground { (er) in
-                    if error != nil {
-                        // プッシュ通知登録に失敗した場合の処理
-                        print("NG:\(er)")
-                        completionHandler(.newData)
-                    } else {
-                        // プッシュ通知登録に成功した場合の処理
-                        print("OK")
-                        completionHandler(.newData)
+        let d = String(comps.year!)+String(comps.month!)+String(comps.day!)
+        let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: d)
+        if (data != nil && data?.plan != nil && data?.plan != ""){
+            musical.audioPlayerInstance.stop()
+        }else{
+            apiClient.sendTwitterRequest(request) { (response, responseData, error) -> Void in
+                if let err = error {
+                    print("Error: \(err.localizedDescription)")
+                    let push = NCMBPush()
+                    let data_iOS = ["contentAvailable" : true] as [String : Any]
+                    push.setData(data_iOS)
+                    push.setPushToIOS(true)
+                    push.setImmediateDeliveryFlag(true) // 即時配信
+                    push.sendInBackground { (er) in
+                        if error != nil {
+                            // プッシュ通知登録に失敗した場合の処理
+                            print("NG:\(er)")
+                            completionHandler(.newData)
+                        } else {
+                            // プッシュ通知登録に成功した場合の処理
+                            print("OK")
+                            completionHandler(.newData)
+                        }
+                        musical.audioPlayerInstance.stop()
                     }
+                    
+                } else {
+                    print("The first Tweet: \(String(describing: responseData))")
+                    completionHandler(.newData)
                     musical.audioPlayerInstance.stop()
                 }
-                
-            } else {
-                print("The first Tweet: \(String(describing: responseData))")
-                completionHandler(.newData)
-                musical.audioPlayerInstance.stop()
             }
         }
+        
     }
     
     // Remote Notification のエラーを受け取る
