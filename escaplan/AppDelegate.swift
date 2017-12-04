@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var backgroundTaskID : UIBackgroundTaskIdentifier = 0
 
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let config = Realm.Configuration(
@@ -55,22 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
-        Twitter.sharedInstance().start(withConsumerKey:"ypqNM52r27MMONEf3CagWvMYe",consumerSecret:"QOGNIE99BdTj9zsjS3EaYqk0OIXNwj1qvF5A0fylw9U7SCp0a8")
-        
-        if let session = Twitter.sharedInstance().sessionStore.session() {
-            print(session.userID)
-                self.window = UIWindow(frame: UIScreen.main.bounds)
-                //Storyboardを指定
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                //Viewcontrollerを指定
-                let initialViewController = storyboard.instantiateViewController(withIdentifier: "calendarPage")
-                //rootViewControllerに入れる
-                self.window?.rootViewController = initialViewController
-                //表示
-                self.window?.makeKeyAndVisible()
-        } else {
-            print("アカウントはありません")
-        }
+    Twitter.sharedInstance().start(withConsumerKey:"ypqNM52r27MMONEf3CagWvMYe",consumerSecret:"QOGNIE99BdTj9zsjS3EaYqk0OIXNwj1qvF5A0fylw9U7SCp0a8")
         
         return true
     }

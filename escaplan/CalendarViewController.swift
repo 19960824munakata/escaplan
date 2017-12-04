@@ -20,6 +20,7 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     @IBOutlet weak var calendarHeight: NSLayoutConstraint!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var textView: PlaceHolderTextView!
+    var twitterloginCheck = 0;
     
     
     //予定がない時に表示する文字
@@ -60,20 +61,6 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         //完了ボタン、キャンセルボタンのview追加
         addToolBar(textView: textView,calendar: calendar)
         
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .badge, .sound]){ (granted,error) in
-            if granted{
-                print("許可")
-                UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
-            }else{
-                print("不可")
-                //遷移先のViewを取得
-                let View = self.storyboard?.instantiateViewController(withIdentifier: "notificationPage")
-                //移動
-                self.present(View!,animated: true,completion: nil)
-            }
-        }
-        
         //サウンドファイルのパスを作成
         let soundFilePath = Bundle.main.path(forResource: "oke_song_10_drive", ofType: "mp3")!
         let sound:URL = URL(fileURLWithPath: soundFilePath)
@@ -99,7 +86,44 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
             try session.setActive(true)
         } catch{
             fatalError("session失敗")
-        }    }
+        }
+        
+        if let session = Twitter.sharedInstance().sessionStore.session() {
+            print(session.userID)
+        } else {
+            print("アカウントはありません")
+            twitterloginCheck = 1
+        }
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //通知の判定
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]){ (granted,error) in
+            if granted{
+                print("許可")
+                UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+                self.twitterCheck()
+            }else{
+                print("不可")
+                //遷移先のViewを取得
+                let View = self.storyboard?.instantiateViewController(withIdentifier: "notificationPage")
+                //移動
+                self.present(View!,animated: true,completion: nil)
+            }
+        }
+        
+    }
+    
+    func twitterCheck(){
+        if(twitterloginCheck == 1){
+            //遷移先のViewを取得
+            let View = self.storyboard?.instantiateViewController(withIdentifier: "notificationPage")
+            //移動
+            self.present(View!,animated: true,completion: nil)
+        }
+    }
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var dateFormatter: DateFormatter = {
