@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		79F4B8836BB940156032D249 /* Pods_escaplanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18117EDF93326F1A53725268 /* Pods_escaplanUITests.framework */; };
+		930662A61FD4DEFF00C08ED2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 930662A51FD4DEFF00C08ED2 /* AVFoundation.framework */; };
+		930662A81FD4DF2B00C08ED2 /* music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930662A71FD4DF2B00C08ED2 /* music.swift */; };
+		930662AA1FD4E1CB00C08ED2 /* oke_song_10_drive.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 930662A91FD4E1CA00C08ED2 /* oke_song_10_drive.mp3 */; };
 		931211031FBDC1900049EB87 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 931211021FBDC1900049EB87 /* RealmSwift.framework */; };
 		931211051FBDC1A00049EB87 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 931211041FBDC1A00049EB87 /* Realm.framework */; };
 		9342EB001FC9AE0D004A4425 /* CalendarPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342EAFF1FC9AE0D004A4425 /* CalendarPlan.swift */; };
@@ -55,6 +58,9 @@
 		9195751357897DD5B8A0E749 /* Pods-escaplanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-escaplanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-escaplanTests/Pods-escaplanTests.release.xcconfig"; sourceTree = "<group>"; };
 		930662671FCFD87800C08ED2 /* escaplan-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "escaplan-Bridging-Header.h"; sourceTree = "<group>"; };
 		9306626A1FD0065500C08ED2 /* escaplan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = escaplan.entitlements; sourceTree = "<group>"; };
+		930662A51FD4DEFF00C08ED2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		930662A71FD4DF2B00C08ED2 /* music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = music.swift; sourceTree = "<group>"; };
+		930662A91FD4E1CA00C08ED2 /* oke_song_10_drive.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = oke_song_10_drive.mp3; path = Image/oke_song_10_drive.mp3; sourceTree = SOURCE_ROOT; };
 		931211021FBDC1900049EB87 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../../Library/Developer/Xcode/DerivedData/escaplan-bebzwixzbrkrliasjqiokjzfybjt/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		931211041FBDC1A00049EB87 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../../Library/Developer/Xcode/DerivedData/escaplan-bebzwixzbrkrliasjqiokjzfybjt/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
 		933EAD071FBDB39F00CF158A /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "Pods/../build/Debug-iphoneos/Realm/Realm.framework"; sourceTree = "<group>"; };
@@ -92,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				930662A61FD4DEFF00C08ED2 /* AVFoundation.framework in Frameworks */,
 				931211051FBDC1A00049EB87 /* Realm.framework in Frameworks */,
 				931211031FBDC1900049EB87 /* RealmSwift.framework in Frameworks */,
 				93CD176D1F9197DE0052359E /* FSCalendar.framework in Frameworks */,
@@ -122,6 +129,7 @@
 		30A4267179FC6B05E6BAD6F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				930662A51FD4DEFF00C08ED2 /* AVFoundation.framework */,
 				931211041FBDC1A00049EB87 /* Realm.framework */,
 				931211021FBDC1900049EB87 /* RealmSwift.framework */,
 				933EAD091FBDB3A500CF158A /* RealmSwift.framework */,
@@ -163,6 +171,7 @@
 				9306626A1FD0065500C08ED2 /* escaplan.entitlements */,
 				9399FACF1F8647BD009CEE61 /* AppDelegate.swift */,
 				9399FAD11F8647BD009CEE61 /* ViewController.swift */,
+				930662A71FD4DF2B00C08ED2 /* music.swift */,
 				9342EAFF1FC9AE0D004A4425 /* CalendarPlan.swift */,
 				9399FAD31F8647BD009CEE61 /* Main.storyboard */,
 				9399FAD91F8647BD009CEE61 /* Assets.xcassets */,
@@ -172,6 +181,7 @@
 				93CD17721F91BAED0052359E /* PopUpView.swift */,
 				9399FADB1F8647BD009CEE61 /* LaunchScreen.storyboard */,
 				9399FADE1F8647BD009CEE61 /* Info.plist */,
+				930662A91FD4E1CA00C08ED2 /* oke_song_10_drive.mp3 */,
 				93CD17681F9135D20052359E /* CalendarViewController.swift */,
 				9399FAD61F8647BD009CEE61 /* escaplan.xcdatamodeld */,
 				930662671FCFD87800C08ED2 /* escaplan-Bridging-Header.h */,
@@ -340,6 +350,7 @@
 			files = (
 				9399FADD1F8647BD009CEE61 /* LaunchScreen.storyboard in Resources */,
 				93CD17711F91BA970052359E /* PopUpView.xib in Resources */,
+				930662AA1FD4E1CB00C08ED2 /* oke_song_10_drive.mp3 in Resources */,
 				9399FADA1F8647BD009CEE61 /* Assets.xcassets in Resources */,
 				9399FAD51F8647BD009CEE61 /* Main.storyboard in Resources */,
 			);
@@ -533,6 +544,7 @@
 				93CD17751F91CC480052359E /* TextEditViewController.swift in Sources */,
 				93CD17691F9135D20052359E /* CalendarViewController.swift in Sources */,
 				9342EB021FC9C5D1004A4425 /* CustomTextView.swift in Sources */,
+				930662A81FD4DF2B00C08ED2 /* music.swift in Sources */,
 				9399FAD81F8647BD009CEE61 /* escaplan.xcdatamodeld in Sources */,
 				9399FAD21F8647BD009CEE61 /* ViewController.swift in Sources */,
 				9399FAD01F8647BD009CEE61 /* AppDelegate.swift in Sources */,

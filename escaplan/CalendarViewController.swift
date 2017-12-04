@@ -11,6 +11,8 @@ import UIKit
 import FSCalendar
 import CalculateCalendarLogic
 import RealmSwift
+import NotificationCenter
+import UserNotifications
 
 class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
 
@@ -58,8 +60,46 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         //完了ボタン、キャンセルボタンのview追加
         addToolBar(textView: textView,calendar: calendar)
         
-        // Do any additional setup after loading the view.
-    }
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]){ (granted,error) in
+            if granted{
+                print("許可")
+                UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+            }else{
+                print("不可")
+                //遷移先のViewを取得
+                let View = self.storyboard?.instantiateViewController(withIdentifier: "notificationPage")
+                //移動
+                self.present(View!,animated: true,completion: nil)
+            }
+        }
+        
+        //サウンドファイルのパスを作成
+        let soundFilePath = Bundle.main.path(forResource: "oke_song_10_drive", ofType: "mp3")!
+        let sound:URL = URL(fileURLWithPath: soundFilePath)
+        // AVAudioPlayerのインスタンスを作成
+        do {
+            musical.audioPlayerInstance = try AVAudioPlayer(contentsOf: sound, fileTypeHint:nil)
+        } catch {
+            print("AVAudioPlayerインスタンス作成失敗")
+        }
+        // バッファに保持していつでも再生できるようにする
+        musical.audioPlayerInstance.prepareToPlay()
+        musical.audioPlayerInstance.numberOfLoops = -1
+        
+        //バックグラウンド用の設定
+        let session = AVAudioSession.sharedInstance()
+        do{
+            try session.setCategory(AVAudioSessionCategoryPlayback)
+        } catch{
+            fatalError("カテゴリ設定失敗")
+        }
+        
+        do{
+            try session.setActive(true)
+        } catch{
+            fatalError("session失敗")
+        }    }
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var dateFormatter: DateFormatter = {
@@ -124,7 +164,7 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     
     //予定がある日に画像を配置する
     func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
-        let image:UIImage = UIImage(named:"100")!
+        let image:UIImage = UIImage(named:"kurage")!
         //初回かどうか
         switch didload{
         case 0:

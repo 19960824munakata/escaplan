@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let applicationkey = "5a2c96d04c8fc67d8c4653423a09ff36eedb89a686132ee8dd1aab871f8557ab"
     let clientkey      = "9848d560daa19d869b52cc5bb9ef1c6accb9a3eae6e30ec2f9a5303d38e92d41"
+    var backgroundTaskID : UIBackgroundTaskIdentifier = 0
 
 
 
@@ -58,15 +59,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let session = Twitter.sharedInstance().sessionStore.session() {
             print(session.userID)
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            //Storyboardを指定
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            //Viewcontrollerを指定
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "calendarPage")
-            //rootViewControllerに入れる
-            self.window?.rootViewController = initialViewController
-            //表示
-            self.window?.makeKeyAndVisible()
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                //Storyboardを指定
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                //Viewcontrollerを指定
+                let initialViewController = storyboard.instantiateViewController(withIdentifier: "calendarPage")
+                //rootViewControllerに入れる
+                self.window?.rootViewController = initialViewController
+                //表示
+                self.window?.makeKeyAndVisible()
         } else {
             print("アカウントはありません")
         }
@@ -81,6 +82,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
 
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        musical.audioPlayerInstance.play()
+        
+        let calendar = Calendar.current
+        let date = Date()
+        let comps = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        print(comps.year!, comps.month!, comps.day!, comps.hour!, comps.minute!, comps.second!)
+        var clientError: NSError?
+        let session = Twitter.sharedInstance().sessionStore.session()?.userID
+        let apiClient = TWTRAPIClient(userID: session)
+        let statusesShowEndpoint = "https://api.twitter.com/1.1/statuses/update.json"
+        let now = String(comps.year!)+"年"+String(comps.month!)+"月"+String(comps.day!)+"日"+String(comps.hour!)+":"+String(comps.minute!)+":"+String(comps.second!)
+        let params = ["status": (String(now) + "中間発表テスト")]
+        let request = apiClient.urlRequest(withMethod: "POST", url: statusesShowEndpoint, parameters: params, error: &clientError)
+        apiClient.sendTwitterRequest(request) { (response, responseData, error) -> Void in
+            if let err = error {
+                print("Error: \(err.localizedDescription)")
+                let push = NCMBPush()
+                let data_iOS = ["contentAvailable" : true] as [String : Any]
+                push.setData(data_iOS)
+                push.setPushToIOS(true)
+                push.setImmediateDeliveryFlag(true) // 即時配信
+                push.sendInBackground { (er) in
+                    if error != nil {
+                        // プッシュ通知登録に失敗した場合の処理
+                        print("NG:\(er)")
+                        completionHandler(.newData)
+                    } else {
+                        // プッシュ通知登録に成功した場合の処理
+                        print("OK")
+                        completionHandler(.newData)
+                    }
+                    musical.audioPlayerInstance.stop()
+                }
+                
+            } else {
+                print("The first Tweet: \(String(describing: responseData))")
+                completionHandler(.newData)
+                musical.audioPlayerInstance.stop()
+            }
+        }
+    }
+    
     // Remote Notification のエラーを受け取る
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print(error)
