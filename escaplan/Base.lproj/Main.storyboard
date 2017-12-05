@@ -27,40 +27,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJ7-2v-QOl">
-                                <rect key="frame" x="156" y="318.5" width="62" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="このアプリは通知をオンにしないと使用できません。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgF-a1-34e">
+                                <rect key="frame" x="44" y="113" width="283" height="84"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="mys-UN-ext"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="通知をオンにした後、再起動をお願いします。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLs-zk-dPQ">
+                                <rect key="frame" x="44" y="268" width="283" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJ7-2v-QOl">
+                                <rect key="frame" x="156" y="421" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="ログイン"/>
                                 <connections>
                                     <action selector="loginTouch:" destination="BYZ-38-t0r" eventType="touchDown" id="Tju-fM-jNQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="このアプリは通知をオンにしないと使用できません。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgF-a1-34e">
-                                <rect key="frame" x="44" y="113" width="283" height="84"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通知をオンにした後、再起動をお願いします。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLs-zk-dPQ">
-                                <rect key="frame" x="44" y="226" width="283" height="62"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="jgF-a1-34e" secondAttribute="trailing" constant="32" id="2OG-Of-IQm"/>
-                            <constraint firstItem="VJ7-2v-QOl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4Vs-5K-BdB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bLs-zk-dPQ" secondAttribute="trailing" constant="32" id="51w-8Z-7L9"/>
-                            <constraint firstItem="bLs-zk-dPQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="28" id="7vj-vM-tZ0"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="bLs-zk-dPQ" secondAttribute="bottom" constant="379" id="NO1-Wx-K3U"/>
-                            <constraint firstItem="jgF-a1-34e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="28" id="Ncm-9U-TG4"/>
-                            <constraint firstItem="bLs-zk-dPQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="206" id="b50-HQ-CW8"/>
-                            <constraint firstItem="jgF-a1-34e" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="93" id="coE-sX-iNV"/>
-                            <constraint firstItem="bLs-zk-dPQ" firstAttribute="top" secondItem="jgF-a1-34e" secondAttribute="bottom" constant="29" id="jNQ-wr-2gd"/>
-                            <constraint firstItem="VJ7-2v-QOl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mgq-hB-XTz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jgF-a1-34e" secondAttribute="trailing" constant="32" id="2Iq-ux-YVj"/>
+                            <constraint firstItem="jgF-a1-34e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="28" id="Jhg-7e-7YH"/>
+                            <constraint firstItem="jgF-a1-34e" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="93" id="ylp-xf-hMd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="VJ7-2v-QOl" id="636-QZ-A3S"/>
+                        <outlet property="notificationLabel1" destination="jgF-a1-34e" id="EuP-cw-5iU"/>
+                        <outlet property="notificationLabel2" destination="bLs-zk-dPQ" id="Ak8-rI-GJa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -102,6 +105,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1N-ia-BmT">
                                         <rect key="frame" x="318" y="17" width="42" height="37"/>
                                         <state key="normal" title="Button" image="plus"/>
+                                        <connections>
+                                            <action selector="logoutTwitter:" destination="3HV-dP-KXN" eventType="touchDown" id="kZA-X0-12d"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -134,14 +140,6 @@
                                     <outlet property="delegate" destination="3HV-dP-KXN" id="GTa-GI-hui"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKA-LF-Q8A">
-                                <rect key="frame" x="238" y="637" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="R8s-73-3Mv" kind="show" id="Bhi-OF-g9X"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="123" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qbh-WD-cvc" customClass="PlaceHolderTextView" customModule="escaplan" customModuleProvider="target">
                                 <rect key="frame" x="16" y="434" width="343" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -164,14 +162,6 @@ hoge</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ti-8v-mVZ">
-                                <rect key="frame" x="292" y="637" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="exampple:" destination="3HV-dP-KXN" eventType="touchDown" id="tb3-jc-Qfx"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
@@ -194,6 +184,7 @@ hoge</string>
                         <outlet property="calendar" destination="ZgX-8c-t1N" id="YbW-fB-BHa"/>
                         <outlet property="calendarHeight" destination="EiN-Mg-sb8" id="9lL-jq-fTZ"/>
                         <outlet property="dayLabel" destination="rwN-fH-zbc" id="xUj-qs-0VY"/>
+                        <outlet property="logoutButton" destination="h1N-ia-BmT" id="Ays-nm-qYs"/>
                         <outlet property="textView" destination="qbh-WD-cvc" id="Yng-qN-Adh"/>
                     </connections>
                 </viewController>
@@ -255,7 +246,4 @@ hoge</string>
         <image name="back" width="104" height="88"/>
         <image name="plus" width="200" height="200"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Bhi-OF-g9X"/>
-    </inferredMetricsTieBreakers>
 </document>

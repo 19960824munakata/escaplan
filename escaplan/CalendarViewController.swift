@@ -20,8 +20,9 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     @IBOutlet weak var calendarHeight: NSLayoutConstraint!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var textView: PlaceHolderTextView!
-    var twitterloginCheck = 0;
-    
+    @IBOutlet weak var logoutButton: UIButton!
+    let userDefaults = UserDefaults.standard //インスタンス生成
+
     
     //予定がない時に表示する文字
     let dummyText : NSString = "予定なし"
@@ -85,14 +86,15 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         do{
             try session.setActive(true)
         } catch{
-            fatalError("session失敗")
-        }
+            fatalError("session失敗")        }
         
         if let session = Twitter.sharedInstance().sessionStore.session() {
             print(session.userID)
+            userDefaults.set(0, forKey: "twitterLoginCheck") //保存
+
         } else {
             print("アカウントはありません")
-            twitterloginCheck = 1
+            userDefaults.set(1, forKey: "twitterLoginCheck") //保存
         }
         
     }
@@ -117,7 +119,7 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     }
     
     func twitterCheck(){
-        if(twitterloginCheck == 1){
+        if(userDefaults.integer(forKey:"twitterLoginCheck") == 1){
             //遷移先のViewを取得
             let View = self.storyboard?.instantiateViewController(withIdentifier: "notificationPage")
             //移動
@@ -365,20 +367,14 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         didload = 1
         calendar.setScope(.week, animated: true)
     }
-    //キーボードが消える時にmonthMode
-/*   func keyboardWillHide(notification: Notification?) {
-        calendar.setScope(.month, animated: true)
-    }*/
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    //"+"ボタン押した時
+    @IBAction func logoutTwitter(_ sender: Any) {
+        if let session = Twitter.sharedInstance().sessionStore.session() {
+            Twitter.sharedInstance().sessionStore.logOutUserID(session.userID)
+        }
     }
-    */
+    
 
 }
 //キーボードに完了ボタン追加
@@ -428,4 +424,6 @@ extension CalendarViewController: UITextViewDelegate,FSCalendarDelegate,FSCalend
         calendar.setScope(.month, animated: true)
         view.endEditing(true) // or do something
     }
+    
+    
 }
