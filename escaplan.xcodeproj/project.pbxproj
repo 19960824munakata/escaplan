@@ -26,8 +26,6 @@
 		93CD17691F9135D20052359E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CD17681F9135D20052359E /* CalendarViewController.swift */; };
 		93CD176B1F9197D90052359E /* CalculateCalendarLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93CD176A1F9197D90052359E /* CalculateCalendarLogic.framework */; };
 		93CD176D1F9197DE0052359E /* FSCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93CD176C1F9197DE0052359E /* FSCalendar.framework */; };
-		93CD17711F91BA970052359E /* PopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93CD17701F91BA970052359E /* PopUpView.xib */; };
-		93CD17731F91BAED0052359E /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CD17721F91BAED0052359E /* PopUpView.swift */; };
 		93CD17751F91CC480052359E /* TextEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CD17741F91CC480052359E /* TextEditViewController.swift */; };
 		A3AB0558332DA0D462149472 /* Pods_escaplanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 095AA4744BF49B4F141092F2 /* Pods_escaplanTests.framework */; };
 		C6A8ED1AFFA087E13F5D8466 /* Pods_escaplan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCD39ED27FC472574AB48F5 /* Pods_escaplan.framework */; };
@@ -84,8 +82,6 @@
 		93CD17681F9135D20052359E /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		93CD176A1F9197D90052359E /* CalculateCalendarLogic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CalculateCalendarLogic.framework; path = "../../../../Library/Developer/Xcode/DerivedData/escaplan-bebzwixzbrkrliasjqiokjzfybjt/Build/Products/Debug-iphonesimulator/CalculateCalendarLogic/CalculateCalendarLogic.framework"; sourceTree = "<group>"; };
 		93CD176C1F9197DE0052359E /* FSCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FSCalendar.framework; path = "../../../../Library/Developer/Xcode/DerivedData/escaplan-bebzwixzbrkrliasjqiokjzfybjt/Build/Products/Debug-iphonesimulator/FSCalendar/FSCalendar.framework"; sourceTree = "<group>"; };
-		93CD17701F91BA970052359E /* PopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpView.xib; sourceTree = "<group>"; };
-		93CD17721F91BAED0052359E /* PopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		93CD17741F91CC480052359E /* TextEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditViewController.swift; sourceTree = "<group>"; };
 		A37949DE43A589D2BCFA6FF3 /* Pods-escaplan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-escaplan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-escaplan/Pods-escaplan.debug.xcconfig"; sourceTree = "<group>"; };
 		B38BEA6643F794B1A3285515 /* Pods-escaplan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-escaplan.release.xcconfig"; path = "Pods/Target Support Files/Pods-escaplan/Pods-escaplan.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,10 +171,8 @@
 				9342EAFF1FC9AE0D004A4425 /* CalendarPlan.swift */,
 				9399FAD31F8647BD009CEE61 /* Main.storyboard */,
 				9399FAD91F8647BD009CEE61 /* Assets.xcassets */,
-				93CD17701F91BA970052359E /* PopUpView.xib */,
 				9342EB011FC9C5D1004A4425 /* CustomTextView.swift */,
 				93CD17741F91CC480052359E /* TextEditViewController.swift */,
-				93CD17721F91BAED0052359E /* PopUpView.swift */,
 				9399FADB1F8647BD009CEE61 /* LaunchScreen.storyboard */,
 				9399FADE1F8647BD009CEE61 /* Info.plist */,
 				930662A91FD4E1CA00C08ED2 /* oke_song_10_drive.mp3 */,
@@ -349,7 +343,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9399FADD1F8647BD009CEE61 /* LaunchScreen.storyboard in Resources */,
-				93CD17711F91BA970052359E /* PopUpView.xib in Resources */,
 				930662AA1FD4E1CB00C08ED2 /* oke_song_10_drive.mp3 in Resources */,
 				9399FADA1F8647BD009CEE61 /* Assets.xcassets in Resources */,
 				9399FAD51F8647BD009CEE61 /* Main.storyboard in Resources */,
@@ -540,7 +533,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9342EB001FC9AE0D004A4425 /* CalendarPlan.swift in Sources */,
-				93CD17731F91BAED0052359E /* PopUpView.swift in Sources */,
 				93CD17751F91CC480052359E /* TextEditViewController.swift in Sources */,
 				93CD17691F9135D20052359E /* CalendarViewController.swift in Sources */,
 				9342EB021FC9C5D1004A4425 /* CustomTextView.swift in Sources */,

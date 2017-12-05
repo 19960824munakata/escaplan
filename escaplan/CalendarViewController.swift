@@ -22,9 +22,10 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     @IBOutlet weak var textView: PlaceHolderTextView!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var changeMode: UIButton!
+    
     let userDefaults = UserDefaults.standard //インスタンス生成
 
-    
     //予定がない時に表示する文字
     let dummyText : NSString = "予定なし"
     //選択した(タップした)日付の保存 :初期値は今日の日付
@@ -62,6 +63,10 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         
         //完了ボタン、キャンセルボタンのview追加
         addToolBar(textView: textView,calendar: calendar)
+        
+        //予定表示中かチェック
+        userDefaults.set(0, forKey: "planAppearCheck") //表示中
+
         
         //サウンドファイルのパスを作成
         let soundFilePath = Bundle.main.path(forResource: "oke_song_10_drive", ofType: "mp3")!
@@ -191,23 +196,23 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     
     //予定がある日に画像を配置する
     func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
-        let image:UIImage = UIImage(named:"kurage")!
+        let image:UIImage = UIImage(named:"e")!
         //初回かどうか
         switch didload{
         case 0:
             //初回起動時、カレンダー全ての日付に対して行う
             //予定があれば
             if eventCheck(date){
-                return image
+                return nil
             }
         case 1:
             if selectEventCheck(date){
-                return image
+                return nil
             }
         default:
             break
         }
-        return nil
+        return image
     }
     //予定があるかないか
     func eventCheck(_ date: Date) -> Bool {
@@ -280,39 +285,13 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         
     }
     
-    @IBAction func exampple(_ sender: Any) {
-        popinit();
-    }
     //calendarのサイズ調整
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendarHeight.constant = bounds.height
         self.view.layoutIfNeeded()
+
     }
     
-    func popinit() {
-        //  カスタムポップアップ
-        let popupView:PopUpView = UINib(nibName: "PopUpView", bundle: nil).instantiate(withOwner: self,options: nil)[0] as! PopUpView
-        // ポップアップビュー背景色（グレーの部分）
-        let viewColor = UIColor.black
-        // 半透明にして親ビューが見えるように。透過度はお好みで。
-        popupView.backgroundColor = viewColor.withAlphaComponent(0.5)
-        //To Do 通知内容によって質問内容を変える
-        
-        //To Do 機嫌によって回答内容を変える。
-        
-        // ポップアップビューを画面サイズに合わせる
-        //       popupView.frame = self.view.frame
-        // ダイアログ背景色（白の部分）
-        let baseViewColor = UIColor.white
-        // 背景を白に
-        popupView.textView.backgroundColor = baseViewColor.withAlphaComponent(1.0)
-        // 角丸にする
-        popupView.textView.layer.cornerRadius = 8.0
-        
-        popupView.textfiledl.text = "Sample"
-        // 貼り付ける
-        self.view.addSubview(popupView)
-    }
     
     //calendarView以外をタップした時
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -375,9 +354,34 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
             Twitter.sharedInstance().sessionStore.logOutUserID(session.userID)
         }
     }
-    
 
+/*
+    @IBAction func planChangeMode(_ sender: Any) {
+        if(userDefaults.integer(forKey: "planAppearCheck") == 0){
+            userDefaults.set(1, forKey: "planAppearCheck") //非表示
+            UIView.animate(withDuration: 0.7, animations: {
+                self.calendarHeight.constant = 560
+                self.view.layoutIfNeeded()
+            })
+            changeMode.setTitle("予定を表示する", for: .normal)
+        }else{
+            userDefaults.set(0, forKey: "planAppearCheck") //表示
+            UIView.animate(withDuration: 0.7, animations: {
+                self.calendarHeight.constant = 331
+                self.view.layoutIfNeeded()
+            })
+            self.view.layoutIfNeeded()
+            self.calendar.setScope(.month, animated: true)
+            changeMode.setTitle("予定を隠す", for: .normal)
+        }
+    }
+ */
 }
+
+
+
+
+
 //キーボードに完了ボタン追加
 extension CalendarViewController: UITextViewDelegate,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance{
     func addToolBar(textView: UITextView,calendar: FSCalendar){
@@ -425,6 +429,4 @@ extension CalendarViewController: UITextViewDelegate,FSCalendarDelegate,FSCalend
         calendar.setScope(.month, animated: true)
         view.endEditing(true) // or do something
     }
-    
-    
 }
