@@ -110,7 +110,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="aeN-UA-qwS" firstAttribute="leading" secondItem="aEr-bj-U8A" secondAttribute="leading" constant="8" id="6g2-4c-zZD"/>
                                     <constraint firstAttribute="trailing" secondItem="h1N-ia-BmT" secondAttribute="trailing" constant="15" id="Lt1-jv-AFY"/>
@@ -186,6 +186,7 @@ hoge</string>
                         <outlet property="dayLabel" destination="rwN-fH-zbc" id="xUj-qs-0VY"/>
                         <outlet property="logoutButton" destination="h1N-ia-BmT" id="Ays-nm-qYs"/>
                         <outlet property="textView" destination="qbh-WD-cvc" id="Yng-qN-Adh"/>
+                        <outlet property="topView" destination="aEr-bj-U8A" id="vDK-oZ-hoU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyn-MK-c76" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -21,6 +21,7 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var textView: PlaceHolderTextView!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var topView: UIView!
     let userDefaults = UserDefaults.standard //インスタンス生成
 
     
