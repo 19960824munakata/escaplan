@@ -21,13 +21,11 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var textView: PlaceHolderTextView!
     @IBOutlet weak var logoutButton: UIButton!
-    @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var changeMode: UIButton!
     
     let userDefaults = UserDefaults.standard //インスタンス生成
 
     //予定がない時に表示する文字
-    let dummyText : NSString = "予定なし"
+    let dummyText : NSString = "予定を入れる"
     //選択した(タップした)日付の保存 :初期値は今日の日付
     var selectDay = ""
     //イベント画像添付判定に使用
