@@ -8,6 +8,7 @@ target 'escaplan' do
 	pod 'FSCalendar'
 	pod 'CalculateCalendarLogic'
 	pod 'NCMB', :git => 'https://github.com/NIFTYCloud-mbaas/ncmb_ios.git'
+        pod 'SCLAlertView'
  
   # Pods for escaplan
 	pod 'RealmSwift'
