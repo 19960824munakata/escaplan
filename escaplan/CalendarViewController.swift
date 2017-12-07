@@ -13,7 +13,6 @@ import CalculateCalendarLogic
 import RealmSwift
 import NotificationCenter
 import UserNotifications
-import SCLAlertView
 
 class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
 
@@ -21,6 +20,7 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     @IBOutlet weak var calendarHeight: NSLayoutConstraint!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var textView: PlaceHolderTextView!
+    @IBOutlet weak var logoutButton: UIButton!
     
     let userDefaults = UserDefaults.standard //インスタンス生成
 
@@ -109,6 +109,7 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
             print("アカウントはありません")
             userDefaults.set(1, forKey: "twitterLoginCheck") //保存
         }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -117,69 +118,17 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         center.requestAuthorization(options: [.alert, .badge, .sound]){ (granted,error) in
             if granted{
                 print("許可")
-                self.userDefaults.set(0, forKey: "notificationCheck")
                 UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+                self.twitterCheck()
             }else{
-                self.userDefaults.set(1, forKey: "notificationCheck")
+                print("不可")
+                //遷移先のViewを取得
+                let View = self.storyboard?.instantiateViewController(withIdentifier: "notificationPage")
+                //移動
+                self.present(View!,animated: true,completion: nil)
             }
         }
         
-        if(userDefaults.integer(forKey: "twitterLoginCheck") == 1 || userDefaults.integer(forKey: "notificationCheck") == 1){
-            createAleart()
-        }
-        
-    }
-    
-    func createAleart(){
-        let appearance = SCLAlertView.SCLAppearance(
-            showCloseButton: false
-        )
-        let alertView = SCLAlertView(appearance: appearance)
-        alertView.addButton("Twitter Login",target:self, selector:#selector(CalendarViewController.TwitterLogin))
-        alertView.addButton("通知設定",target:self, selector:#selector(CalendarViewController.notificationCheck))
-        alertView.addButton("Done",target:self, selector:#selector(CalendarViewController.Done))
-        alertView.showSuccess("ようこそ！", subTitle: "このアプリケーションではTwitterログインが必須となります。")
-    }
-    
-    func Done(){
-        viewDidAppear(false)
-    }
-    
-    func TwitterLogin(){
-        Twitter.sharedInstance().logIn { session, error in
-            guard session != nil else {
-                if let error = error {
-                    print("エラーが起きました => \(error.localizedDescription)")
-                }
-                if let check = Twitter.sharedInstance().sessionStore.session() {
-                    print(check.userID)
-                    self.userDefaults.set(0, forKey: "twitterLoginCheck") //ログイン状態
-                    if(self.userDefaults.integer(forKey: "notificationCheck") == 1){
-          //              self.viewDidAppear(false)
-                    }
-                    
-                } else {
-                    print("アカウントはありません")
-                    self.userDefaults.set(1, forKey: "twitterLoginCheck") //ログアウト状態
-                //    self.viewDidAppear(false)
-                }
-                return
-            }
-            
-        }
-    }
-    
-    func notificationCheck(){
-        let bundleId = Bundle.main.bundleIdentifier
-        let path:String = "App-Prefs:root=NOTIFICATIONS_ID&path="+bundleId!
-        if let url = URL(string: path ) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-        }
-        viewDidAppear(false)
     }
     
     func twitterCheck(){
