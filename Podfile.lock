@@ -15,6 +15,9 @@ PODS:
   - Realm/Headers (3.0.2)
   - RealmSwift (3.0.2):
     - Realm (= 3.0.2)
+<<<<<<< HEAD
+>>>>>>> parent of 700b459... b
+=======
 >>>>>>> parent of 700b459... b
   - TwitterCore (3.0.2)
   - TwitterKit (3.2.1):
@@ -25,8 +28,12 @@ DEPENDENCIES:
   - FSCalendar
   - NCMB (from `https://github.com/NIFTYCloud-mbaas/ncmb_ios.git`)
 <<<<<<< HEAD
+<<<<<<< HEAD
   - RealmSwift (~> 2.8.3)
   - SCLAlertView
+=======
+  - RealmSwift
+>>>>>>> parent of 700b459... b
 =======
   - RealmSwift
 >>>>>>> parent of 700b459... b
@@ -60,6 +67,9 @@ PODFILE CHECKSUM: 60e14975c72ef09be115deac939f80e116809fd4
   TwitterKit: 205ac89824bbfe9e85a16c420d30bb7bcbedac45
 
 PODFILE CHECKSUM: 4689c16334b4fe6830a19ffa52ca9bab53536bb1
+<<<<<<< HEAD
+>>>>>>> parent of 700b459... b
+=======
 >>>>>>> parent of 700b459... b
 
 COCOAPODS: 1.3.1

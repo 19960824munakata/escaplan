@@ -44,11 +44,14 @@
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
+<<<<<<< HEAD
 		<key>SCLAlertView.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
+=======
+>>>>>>> parent of 700b459... b
 	</dict>
 </dict>
 </plist>
