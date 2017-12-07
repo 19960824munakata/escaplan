@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var notificationLabel1: UILabel!
@@ -16,6 +17,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let userDefaults = UserDefaults.standard
         if(userDefaults.integer(forKey:"twitterLoginCheck") == 1){
             loginButton.alpha = 1
