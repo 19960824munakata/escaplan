@@ -79,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let apiClient = TWTRAPIClient(userID: session)
         let statusesShowEndpoint = "https://api.twitter.com/1.1/statuses/update.json"
         let now = String(comps.year!)+"年"+String(comps.month!)+"月"+String(comps.day!)+"日"+String(comps.hour!)+":"+String(comps.minute!)+":"+String(comps.second!)
-        let params = ["status": (String(now) + "中間発表テスト")]
+        let params = ["status": (String(now) + "今日１０人ナンパします")]
         let request = apiClient.urlRequest(withMethod: "POST", url: statusesShowEndpoint, parameters: params, error: &clientError)
         let d = String(comps.year!)+String(comps.month!)+String(comps.day!)
         let data = realm.object(ofType: calendarPlan.self, forPrimaryKey: d)
@@ -112,6 +112,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     completionHandler(.newData)
                     musical.audioPlayerInstance.stop()
                 }
+                //local通知発車
+                let trigger: UNNotificationTrigger
+                trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                
+                //表示の設定
+                let content = UNMutableNotificationContent()
+                content.title = "escaplan"
+                content.body = "あなたの予定がTwitterに投稿されました。"
+                content.sound = UNNotificationSound.default()
+                
+                // デフォルトの通知。画像などは設定しない
+                let request = UNNotificationRequest(identifier: "normal",
+                                                    content: content,
+                                                    trigger: trigger)
+                
+                //通知を予約
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }
         }
         
