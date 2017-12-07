@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3HV-dP-KXN">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HiraginoMincho.ttc">
+            <string>HiraMinProN-W3</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="notificationPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="escaplan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="このアプリは通知をオンにしないと使用できません。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgF-a1-34e">
+                                <rect key="frame" x="44" y="113" width="283" height="84"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="mys-UN-ext"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="通知をオンにした後、再起動をお願いします。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLs-zk-dPQ">
+                                <rect key="frame" x="44" y="268" width="283" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJ7-2v-QOl">
+                                <rect key="frame" x="156" y="421" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ログイン"/>
+                                <connections>
+                                    <action selector="loginTouch:" destination="BYZ-38-t0r" eventType="touchDown" id="Tju-fM-jNQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="jgF-a1-34e" secondAttribute="trailing" constant="32" id="2Iq-ux-YVj"/>
+                            <constraint firstItem="jgF-a1-34e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="28" id="Jhg-7e-7YH"/>
+                            <constraint firstItem="jgF-a1-34e" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="93" id="ylp-xf-hMd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="VJ7-2v-QOl" id="636-QZ-A3S"/>
+                        <outlet property="notificationLabel1" destination="jgF-a1-34e" id="EuP-cw-5iU"/>
+                        <outlet property="notificationLabel2" destination="bLs-zk-dPQ" id="Ak8-rI-GJa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="96.799999999999997" y="145.27736131934034"/>
+        </scene>
+        <!--Data Source-->
+        <scene sceneID="emV-WR-bIE">
+            <objects>
+                <viewController restorationIdentifier="calendarPage" storyboardIdentifier="calendarPage" id="3HV-dP-KXN" customClass="CalendarViewController" customModule="escaplan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MzI-Dy-MIZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="jw0-kF-F78"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T9p-bW-7vz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aEr-bj-U8A">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="編集" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xei-sn-vQp">
+                                        <rect key="frame" x="131" y="8" width="114" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="34"/>
+                                        <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeN-UA-qwS">
+                                        <rect key="frame" x="8" y="4" width="70" height="62"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="K7s-bz-HJT"/>
+                                            <constraint firstAttribute="height" constant="62" id="Wfz-ZR-t8l"/>
+                                        </constraints>
+                                        <state key="normal" image="back"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="InN-lM-LTs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1N-ia-BmT">
+                                        <rect key="frame" x="318" y="17" width="42" height="37"/>
+                                        <state key="normal" title="Button" image="plus"/>
+                                        <connections>
+                                            <action selector="logoutTwitter:" destination="3HV-dP-KXN" eventType="touchDown" id="kZA-X0-12d"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="aeN-UA-qwS" firstAttribute="leading" secondItem="aEr-bj-U8A" secondAttribute="leading" constant="8" id="6g2-4c-zZD"/>
+                                    <constraint firstAttribute="trailing" secondItem="h1N-ia-BmT" secondAttribute="trailing" constant="15" id="Lt1-jv-AFY"/>
+                                    <constraint firstItem="h1N-ia-BmT" firstAttribute="top" secondItem="aEr-bj-U8A" secondAttribute="top" constant="17" id="P3H-R1-R1p"/>
+                                    <constraint firstItem="aeN-UA-qwS" firstAttribute="top" secondItem="aEr-bj-U8A" secondAttribute="top" constant="4" id="a91-N4-z94"/>
+                                    <constraint firstItem="h1N-ia-BmT" firstAttribute="leading" secondItem="aEr-bj-U8A" secondAttribute="leading" constant="318" id="h2a-3B-1Pr"/>
+                                    <constraint firstAttribute="bottom" secondItem="h1N-ia-BmT" secondAttribute="bottom" constant="16" id="phg-o6-9FB"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZgX-8c-t1N" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="64" width="375" height="331"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="331" id="EiN-Mg-sb8"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="todayColor">
+                                        <color key="value" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectionColor">
+                                        <color key="value" red="1" green="0.43529412150000002" blue="0.81176471709999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="headerDateFormat" value="yyyy年  MM月"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="3HV-dP-KXN" id="9T2-s0-eG2"/>
+                                    <outlet property="delegate" destination="3HV-dP-KXN" id="GTa-GI-hui"/>
+                                </connections>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="123" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qbh-WD-cvc" customClass="PlaceHolderTextView" customModule="escaplan" customModuleProvider="target">
+                                <rect key="frame" x="16" y="434" width="343" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="A0Z-HG-gVt"/>
+                                </constraints>
+                                <string key="text">hoge
+hoge</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="○月○日の予定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwN-fH-zbc">
+                                <rect key="frame" x="16" y="403" width="136" height="23"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="136" id="Pu1-m1-uM8"/>
+                                    <constraint firstAttribute="height" constant="23" id="unL-6W-MBC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aEr-bj-U8A" firstAttribute="top" secondItem="T9p-bW-7vz" secondAttribute="top" id="1Tp-bO-YaJ"/>
+                            <constraint firstItem="ZgX-8c-t1N" firstAttribute="leading" secondItem="T9p-bW-7vz" secondAttribute="leading" id="3q4-Pa-fSR"/>
+                            <constraint firstItem="rwN-fH-zbc" firstAttribute="top" secondItem="ZgX-8c-t1N" secondAttribute="bottom" constant="8" id="4pg-XU-AZT"/>
+                            <constraint firstItem="ZgX-8c-t1N" firstAttribute="top" secondItem="MzI-Dy-MIZ" secondAttribute="bottom" constant="44" id="Dqy-Vf-scX"/>
+                            <constraint firstAttribute="trailing" secondItem="aEr-bj-U8A" secondAttribute="trailing" id="EN9-vZ-ofe"/>
+                            <constraint firstItem="aEr-bj-U8A" firstAttribute="leading" secondItem="T9p-bW-7vz" secondAttribute="leading" id="Eg2-1n-QRr"/>
+                            <constraint firstAttribute="bottom" secondItem="aEr-bj-U8A" secondAttribute="bottom" constant="597" id="J6g-Yi-tqo"/>
+                            <constraint firstItem="qbh-WD-cvc" firstAttribute="leading" secondItem="T9p-bW-7vz" secondAttribute="leadingMargin" id="Mcu-MK-5jw"/>
+                            <constraint firstItem="qbh-WD-cvc" firstAttribute="top" secondItem="rwN-fH-zbc" secondAttribute="bottom" constant="8" id="PMX-Ue-bw5"/>
+                            <constraint firstItem="ZgX-8c-t1N" firstAttribute="centerX" secondItem="T9p-bW-7vz" secondAttribute="centerX" id="Qdv-tS-bJL"/>
+                            <constraint firstItem="rwN-fH-zbc" firstAttribute="leading" secondItem="T9p-bW-7vz" secondAttribute="leadingMargin" id="ZIP-y5-GJd"/>
+                            <constraint firstItem="qbh-WD-cvc" firstAttribute="trailing" secondItem="T9p-bW-7vz" secondAttribute="trailingMargin" id="hw3-gX-e9C"/>
+                            <constraint firstAttribute="trailing" secondItem="ZgX-8c-t1N" secondAttribute="trailing" id="moe-rB-zt5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="calendar" destination="ZgX-8c-t1N" id="YbW-fB-BHa"/>
+                        <outlet property="calendarHeight" destination="EiN-Mg-sb8" id="9lL-jq-fTZ"/>
+                        <outlet property="dayLabel" destination="rwN-fH-zbc" id="xUj-qs-0VY"/>
+                        <outlet property="logoutButton" destination="h1N-ia-BmT" id="Ays-nm-qYs"/>
+                        <outlet property="textView" destination="qbh-WD-cvc" id="Yng-qN-Adh"/>
+                        <outlet property="topView" destination="aEr-bj-U8A" id="vDK-oZ-hoU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xyn-MK-c76" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1090.4000000000001" y="137.18140929535232"/>
+        </scene>
+        <!--Text Edit View Controller-->
+        <scene sceneID="9iL-bs-Vt5">
+            <objects>
+                <viewController restorationIdentifier="textdit" storyboardIdentifier="textedit" id="R8s-73-3Mv" customClass="TextEditViewController" customModule="escaplan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wia-dB-vpE"/>
+                        <viewControllerLayoutGuide type="bottom" id="SKc-8X-6Vq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YmW-it-Y1N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lxi-es-ahN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1868" y="136.28185907046478"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="back" width="104" height="88"/>
+        <image name="plus" width="200" height="200"/>
+    </resources>
+</document>
