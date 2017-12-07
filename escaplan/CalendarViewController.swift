@@ -13,6 +13,7 @@ import CalculateCalendarLogic
 import RealmSwift
 import NotificationCenter
 import UserNotifications
+import SCLAlertView
 
 class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
 
@@ -35,6 +36,15 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let alertView = SCLAlertView()
+        alertView.addButton("Twitter Login"){
+            print("Login")
+        }
+        alertView.addButton("通知設定"){
+            print("notification")
+        }
+        alertView.showSuccess("ようこそ！", subTitle: "このアプリケーションではTwitterログインが必須となります。")
+        
         // デリゲートの設定
         self.calendar.dataSource = self
         self.calendar.delegate = self
