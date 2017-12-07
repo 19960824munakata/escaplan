@@ -1,6 +1,0 @@
-framework module Pods_escaplanUITests {
-  umbrella header "Pods-escaplanUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
