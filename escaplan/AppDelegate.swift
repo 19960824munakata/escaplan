@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let applicationkey = "5a2c96d04c8fc67d8c4653423a09ff36eedb89a686132ee8dd1aab871f8557ab"
     let clientkey      = "9848d560daa19d869b52cc5bb9ef1c6accb9a3eae6e30ec2f9a5303d38e92d41"
     var backgroundTaskID : UIBackgroundTaskIdentifier = 0
+    let userDefaults = UserDefaults.standard //インスタンス生成
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -32,15 +34,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = config
         _ = try! Realm()
         
+        // "firstLaunch"をキーに、Bool型の値を保持する
+        let dict = ["first": true]
+        // デフォルト値登録
+        // ※すでに値が更新されていた場合は、更新後の値のままになる
+        userDefaults.register(defaults: dict)
+        
+        if userDefaults.bool(forKey: "first") {
+            userDefaults.set(1, forKey: "first")
+        }
+        
         let center = UNUserNotificationCenter.current()
+        
         center.requestAuthorization(options: [.alert, .badge, .sound]){ (granted,error) in
             if granted{
                 print("許可")
-                UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+                center.delegate = self;
+                UNUserNotificationCenter.current().delegate = self
             }else{
                 print("不可")
             }
         }
+        
         
         //mBaas
         NCMB.setApplicationKey(applicationkey, clientKey: clientkey)
@@ -53,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
-    Twitter.sharedInstance().start(withConsumerKey:"ypqNM52r27MMONEf3CagWvMYe",consumerSecret:"QOGNIE99BdTj9zsjS3EaYqk0OIXNwj1qvF5A0fylw9U7SCp0a8")
+        Twitter.sharedInstance().start(withConsumerKey:"ypqNM52r27MMONEf3CagWvMYe",consumerSecret:"QOGNIE99BdTj9zsjS3EaYqk0OIXNwj1qvF5A0fylw9U7SCp0a8")
         
         return true
     }
@@ -123,9 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 content.sound = UNNotificationSound.default()
                 
                 // デフォルトの通知。画像などは設定しない
-                let request = UNNotificationRequest(identifier: "normal",
-                                                    content: content,
-                                                    trigger: trigger)
+                let request = UNNotificationRequest.init(identifier: "normal",content: content,trigger: trigger)
                 
                 //通知を予約
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
@@ -207,6 +220,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
+    
+
 
     // MARK: - Core Data stack
 
@@ -242,3 +257,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate:UNUserNotificationCenterDelegate{
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("フォア\n")
+        // アプリ起動中でもアラート&音で通知
+        completionHandler([.alert, .sound])
+    }
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+}

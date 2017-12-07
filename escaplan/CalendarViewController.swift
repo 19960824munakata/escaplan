@@ -13,15 +13,14 @@ import CalculateCalendarLogic
 import RealmSwift
 import NotificationCenter
 import UserNotifications
+import SCLAlertView
 
 class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
 
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var calendarHeight: NSLayoutConstraint!
     @IBOutlet weak var dayLabel: UILabel!
-    @IBOutlet weak var textView: PlaceHolderTextView!
-    @IBOutlet weak var logoutButton: UIButton!
-    
+    @IBOutlet weak var textView: PlaceHolderTextView!    
     let userDefaults = UserDefaults.standard //インスタンス生成
 
     //予定がない時に表示する文字
@@ -34,15 +33,6 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let alertView = SCLAlertView()
-        alertView.addButton("Twitter Login"){
-            print("Login")
-        }
-        alertView.addButton("通知設定"){
-            print("notification")
-        }
-        alertView.showSuccess("ようこそ！", subTitle: "このアプリケーションではTwitterログインが必須となります。")
-        
         // デリゲートの設定
         self.calendar.dataSource = self
         self.calendar.delegate = self
@@ -118,26 +108,69 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         center.requestAuthorization(options: [.alert, .badge, .sound]){ (granted,error) in
             if granted{
                 print("許可")
+                self.userDefaults.set(0, forKey: "notificationCheck")
                 UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
-                self.twitterCheck()
             }else{
-                print("不可")
-                //遷移先のViewを取得
-                let View = self.storyboard?.instantiateViewController(withIdentifier: "notificationPage")
-                //移動
-                self.present(View!,animated: true,completion: nil)
+                self.userDefaults.set(1, forKey: "notificationCheck")
             }
+        }
+        
+        if(self.userDefaults.integer(forKey: "twitterLoginCheck") == 1 || self.userDefaults.integer(forKey: "notificationCheck") == 1){
+            self.createAleart()
         }
         
     }
     
-    func twitterCheck(){
-        if(userDefaults.integer(forKey:"twitterLoginCheck") == 1){
-            //遷移先のViewを取得
-            let View = self.storyboard?.instantiateViewController(withIdentifier: "notificationPage")
-            //移動
-            self.present(View!,animated: true,completion: nil)
+    func createAleart(){
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        let alertView = SCLAlertView(appearance: appearance)
+        alertView.addButton("Twitter Login",backgroundColor:UIColor(rgba: 0x00BEF4FF) ,target:self, selector:#selector(CalendarViewController.TwitterLogin))
+        alertView.addButton("通知設定",target:self, selector:#selector(CalendarViewController.notificationCheck))
+        alertView.addButton("Done",target:self, selector:#selector(CalendarViewController.Done))
+        alertView.showSuccess("ようこそ！", subTitle: "このアプリケーションではTwitterのログインと通知が必須となります。")
+    }
+    
+    func Done(){
+        viewDidAppear(false)
+    }
+    
+    func TwitterLogin(){
+        Twitter.sharedInstance().logIn { session, error in
+            guard session != nil else {
+                if let error = error {
+                    print("エラーが起きました => \(error.localizedDescription)")
+                }
+                if let check = Twitter.sharedInstance().sessionStore.session() {
+                    print(check.userID)
+                    self.userDefaults.set(0, forKey: "twitterLoginCheck") //ログイン状態
+/*                    if(self.userDefaults.integer(forKey: "notificationCheck") == 1){
+                        self.viewDidAppear(false)
+                    }
+ */
+                } else {
+                    print("アカウントはありません")
+                    self.userDefaults.set(1, forKey: "twitterLoginCheck") //ログアウト状態
+//                    self.viewDidAppear(false)
+                }
+                return
+            }
+            
         }
+    }
+    
+    func notificationCheck(){
+        let bundleId = Bundle.main.bundleIdentifier
+        let path:String = "App-Prefs:root=NOTIFICATIONS_ID&path="+bundleId!
+        if let url = URL(string: path ) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+        viewDidAppear(false)
     }
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
@@ -257,6 +290,11 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     
     //カレンダータップイベント
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        if(self.userDefaults.integer(forKey: "first") == 1){
+            textView.resignFirstResponder()
+            self.createAleart()
+            userDefaults.set(0, forKey: "first")
+        }
         //Realmのインスタンスを取得
         let realm = try! Realm()
         let d = getDay(date)
@@ -306,6 +344,11 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         //Realmのインスタンスを取得
         let realm = try! Realm()
         for touch: UITouch in touches {
+            if(self.userDefaults.integer(forKey: "first") == 1){
+                userDefaults.set(0, forKey: "first")
+                textView.resignFirstResponder()
+                self.createAleart()
+            }
             let tag = touch.view!.tag
             //textView以外をタッチした時
             if tag != 123 {
@@ -322,7 +365,6 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
                     textView.resignFirstResponder()
                 }
             }
-
         }
     }
     
@@ -352,41 +394,16 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
     // キーボードが現れた時に、calendarをweekModeにする
     func keyboardWillShow(notification: Notification?) {
         didload = 1
-        calendar.setScope(.week, animated: true)
-    }
-    
-    //"+"ボタン押した時
-    @IBAction func logoutTwitter(_ sender: Any) {
-        if let session = Twitter.sharedInstance().sessionStore.session() {
-            Twitter.sharedInstance().sessionStore.logOutUserID(session.userID)
-        }
-    }
-
-/*
-    @IBAction func planChangeMode(_ sender: Any) {
-        if(userDefaults.integer(forKey: "planAppearCheck") == 0){
-            userDefaults.set(1, forKey: "planAppearCheck") //非表示
-            UIView.animate(withDuration: 0.7, animations: {
-                self.calendarHeight.constant = 560
-                self.view.layoutIfNeeded()
-            })
-            changeMode.setTitle("予定を表示する", for: .normal)
+        if(self.userDefaults.integer(forKey: "first") == 1){
+            userDefaults.set(0, forKey: "first")
+            textView.resignFirstResponder()
+            self.createAleart()
         }else{
-            userDefaults.set(0, forKey: "planAppearCheck") //表示
-            UIView.animate(withDuration: 0.7, animations: {
-                self.calendarHeight.constant = 331
-                self.view.layoutIfNeeded()
-            })
-            self.view.layoutIfNeeded()
-            self.calendar.setScope(.month, animated: true)
-            changeMode.setTitle("予定を隠す", for: .normal)
+            calendar.setScope(.week, animated: true)
         }
     }
- */
+
 }
-
-
-
 
 
 //キーボードに完了ボタン追加
@@ -435,5 +452,26 @@ extension CalendarViewController: UITextViewDelegate,FSCalendarDelegate,FSCalend
         }
         calendar.setScope(.month, animated: true)
         view.endEditing(true) // or do something
+    }
+}
+
+//UIColor
+extension UIColor {
+    
+    convenience public init(rgba: Int64) {
+        let r = CGFloat((rgba & 0xFF000000) >> 24) / 255.0
+        let g = CGFloat((rgba & 0x00FF0000) >> 16) / 255.0
+        let b = CGFloat((rgba & 0x0000FF00) >>  8) / 255.0
+        let a = CGFloat( rgba & 0x000000FF)        / 255.0
+        
+        self.init(red: r, green: g, blue: b, alpha: a)
+    }
+    
+    class var background: UIColor {
+        return UIColor(rgba: 0x43BFFEFF)
+    }
+    
+    class var title: UIColor {
+        return UIColor(rgba: 0xFE99ACFF)
     }
 }
