@@ -118,7 +118,6 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         if(self.userDefaults.integer(forKey: "twitterLoginCheck") == 1 || self.userDefaults.integer(forKey: "notificationCheck") == 1){
             self.createAleart()
         }
-        
     }
     
     func createAleart(){
@@ -127,7 +126,7 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate{
         )
         let alertView = SCLAlertView(appearance: appearance)
         alertView.addButton("Twitter Login",backgroundColor:UIColor(rgba: 0x00BEF4FF) ,target:self, selector:#selector(CalendarViewController.TwitterLogin))
-        alertView.addButton("通知設定",target:self, selector:#selector(CalendarViewController.notificationCheck))
+        alertView.addButton("通知設定",backgroundColor:UIColor(rgba: 0xFFCC66FF),target:self, selector:#selector(CalendarViewController.notificationCheck))
         alertView.addButton("Done",target:self, selector:#selector(CalendarViewController.Done))
         alertView.showSuccess("ようこそ！", subTitle: "このアプリケーションではTwitterのログインと通知が必須となります。")
     }

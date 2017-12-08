@@ -154,6 +154,12 @@ hoge</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frame" translatesAutoresizingMaskIntoConstraints="NO" id="D3T-kG-EVw">
+                                <rect key="frame" x="9" y="434" width="366" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="kFz-tc-O7p"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
@@ -162,8 +168,11 @@ hoge</string>
                             <constraint firstItem="ZgX-8c-t1N" firstAttribute="top" secondItem="MzI-Dy-MIZ" secondAttribute="bottom" constant="8" id="4Ni-RW-tWr"/>
                             <constraint firstItem="qbh-WD-cvc" firstAttribute="trailing" secondItem="T9p-bW-7vz" secondAttribute="trailingMargin" id="5wD-O3-X1B"/>
                             <constraint firstAttribute="trailing" secondItem="ZgX-8c-t1N" secondAttribute="trailing" id="A8x-2y-Hku"/>
+                            <constraint firstItem="D3T-kG-EVw" firstAttribute="top" secondItem="rwN-fH-zbc" secondAttribute="bottom" constant="8" id="EXk-cg-dA3"/>
+                            <constraint firstAttribute="trailing" secondItem="D3T-kG-EVw" secondAttribute="trailing" id="G8q-z3-I6B"/>
                             <constraint firstItem="8f2-bb-vgl" firstAttribute="top" secondItem="ueV-VE-6VE" secondAttribute="bottom" constant="4" id="MHH-ys-6Dc"/>
                             <constraint firstItem="ueV-VE-6VE" firstAttribute="leading" secondItem="T9p-bW-7vz" secondAttribute="leadingMargin" constant="10" id="bhA-U5-axm"/>
+                            <constraint firstItem="D3T-kG-EVw" firstAttribute="leading" secondItem="T9p-bW-7vz" secondAttribute="leading" constant="9" id="cUw-m1-yS9"/>
                             <constraint firstItem="ZgX-8c-t1N" firstAttribute="leading" secondItem="T9p-bW-7vz" secondAttribute="leading" id="dKB-lH-Ehk"/>
                             <constraint firstItem="qbh-WD-cvc" firstAttribute="top" secondItem="rwN-fH-zbc" secondAttribute="bottom" constant="8" id="eOz-kI-6qK"/>
                             <constraint firstItem="rwN-fH-zbc" firstAttribute="top" secondItem="ZgX-8c-t1N" secondAttribute="bottom" constant="8" id="fq4-Hl-6Yd"/>
@@ -183,4 +192,7 @@ hoge</string>
             <point key="canvasLocation" x="1090.4000000000001" y="137.18140929535232"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="frame" width="400" height="282"/>
+    </resources>
 </document>
